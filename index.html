@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop | Moda urbana y esenciales diarios</title>
+    <meta name="description" content="Loop: descubre nuevos lanzamientos y más vendidos en calzado, camisas, pantalones y accesorios para tu estilo diario.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="Loop">
+    <meta name="theme-color" content="#0f766e">
+    <link rel="canonical" href="index.html">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:title" content="Loop | Moda urbana y esenciales diarios">
+    <meta property="og:description" content="Explora nuevos lanzamientos y más vendidos en Loop: calzado, camisas, pantalones y accesorios.">
+    <meta property="og:url" content="index.html">
+    <meta property="og:site_name" content="Loop">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Loop | Moda urbana y esenciales diarios">
+    <meta name="twitter:description" content="Descubre las colecciones más recientes y los productos más vendidos de Loop.">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@graph": [
+                {
+                    "@type": "Organization",
+                    "name": "Loop",
+                    "url": "index.html",
+                    "contactPoint": {
+                        "@type": "ContactPoint",
+                        "contactType": "customer support",
+                        "email": "soporte@loop.com",
+                        "telephone": "+34 600 000 000"
+                    }
+                },
+                {
+                    "@type": "WebSite",
+                    "name": "Loop",
+                    "url": "index.html",
+                    "potentialAction": {
+                        "@type": "SearchAction",
+                        "target": "index.html?busqueda={search_term_string}",
+                        "query-input": "required name=search_term_string"
+                    }
+                },
+                {
+                    "@type": "WebPage",
+                    "name": "Inicio Loop",
+                    "url": "index.html",
+                    "description": "Página de inicio de Loop con colecciones destacadas y productos más vendidos.",
+                    "inLanguage": "es"
+                },
+                {
+                    "@type": "ItemList",
+                    "name": "Nuevos lanzamientos",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Urban Runner X1"},
+                        {"@type": "ListItem", "position": 2, "name": "Camisa Linen Flow"},
+                        {"@type": "ListItem", "position": 3, "name": "Pantalón City Fit"},
+                        {"@type": "ListItem", "position": 4, "name": "Bolso Metro Mini"}
+                    ]
+                },
+                {
+                    "@type": "ItemList",
+                    "name": "Más vendidos",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": "Classic Sneaker V2"},
+                        {"@type": "ListItem", "position": 2, "name": "Camisa Oxford Premium"},
+                        {"@type": "ListItem", "position": 3, "name": "Jeans Blue Core"},
+                        {"@type": "ListItem", "position": 4, "name": "Pack Accesorios Loop"}
+                    ]
+                }
+            ]
+        }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
+
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                </div>
+            </form>
+
+            <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+        </nav>
+    </header>
+
+    <main id="contenido">
+        <section aria-labelledby="hero-title" class="relative h-[100svh] min-h-[560px]">
+            <video class="absolute inset-0 h-full w-full object-cover" src="Recursos Gráficos/CampañaHero.mp4" autoplay muted loop playsinline aria-label="Video de campaña principal de Loop"></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/25 to-transparent"></div>
+            <div class="relative z-10 mx-auto flex h-full w-[92%] max-w-6xl items-end pb-12 md:pb-16">
+                <div>
+                    <h1 id="hero-title" class="max-w-2xl text-3xl font-bold leading-tight text-white md:text-5xl">Moda urbana para todos los días: nuevos lanzamientos y piezas esenciales.</h1>
+                    <p class="mt-4 max-w-xl text-base text-slate-100 md:text-lg">Explora una selección de calzado, camisas, pantalones y accesorios diseñados para combinar estilo y comodidad.</p>
+                </div>
+            </div>
+        </section>
+
+        <section aria-labelledby="nuevos-lanzamientos" class="mx-auto w-[92%] max-w-6xl py-8 md:py-10">
+            <div class="mb-4 flex items-end justify-between">
+                <h2 id="nuevos-lanzamientos" class="text-xl font-semibold md:text-2xl">Nuevos lanzamientos</h2>
+                <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
+            </div>
+            <div class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2" aria-label="Listado horizontal de nuevos lanzamientos">
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-cyan-100 to-blue-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Urban Runner X1</h3>
+                    <p class="mt-1 text-sm text-slate-600">Calzado deportivo ligero con suela flexible.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$89.99</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-teal-100 to-cyan-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Camisa Linen Flow</h3>
+                    <p class="mt-1 text-sm text-slate-600">Camisa fresca de corte relajado.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$44.50</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-sky-100 to-indigo-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Pantalón City Fit</h3>
+                    <p class="mt-1 text-sm text-slate-600">Diseño cómodo para uso diario.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$59.90</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Bolso Metro Mini</h3>
+                    <p class="mt-1 text-sm text-slate-600">Accesorio urbano compacto.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$36.00</p>
+                </article>
+            </div>
+        </section>
+
+        <section aria-labelledby="mas-vendidos" class="mx-auto w-[92%] max-w-6xl pb-10 md:pb-12">
+            <div class="mb-4 flex items-end justify-between">
+                <h2 id="mas-vendidos" class="text-xl font-semibold md:text-2xl">Más vendidos</h2>
+                <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
+            </div>
+            <div class="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2" aria-label="Listado horizontal de más vendidos">
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-slate-100 to-blue-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Classic Sneaker V2</h3>
+                    <p class="mt-1 text-sm text-slate-600">Estilo casual con alta durabilidad.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$72.00</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-amber-100 to-orange-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Camisa Oxford Premium</h3>
+                    <p class="mt-1 text-sm text-slate-600">Ideal para oficina y eventos.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$49.90</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-blue-100 to-cyan-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Jeans Blue Core</h3>
+                    <p class="mt-1 text-sm text-slate-600">Pantalón clásico de gran ajuste.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$64.50</p>
+                </article>
+                <article class="min-w-[240px] snap-start rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:-translate-y-1 hover:shadow-md md:min-w-[260px]">
+                    <div class="mb-4 h-36 rounded-xl bg-gradient-to-br from-fuchsia-100 to-pink-100" aria-hidden="true"></div>
+                    <h3 class="text-base font-semibold">Pack Accesorios Loop</h3>
+                    <p class="mt-1 text-sm text-slate-600">Set de básicos para cada look.</p>
+                    <p class="mt-3 text-sm font-bold text-loop-700">$29.90</p>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-10 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
+                <address class="space-y-2 text-sm not-italic text-slate-300">
+                    <p>soporte@loop.com</p>
+                    <p>+34 600 000 000</p>
+                    <p>Lun a Vie 9:00 - 18:00</p>
+                </address>
+            </section>
+        </div>
+        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
