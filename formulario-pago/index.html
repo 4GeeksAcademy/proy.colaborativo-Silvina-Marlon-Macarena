@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Checkout PRO</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100">
+
+<main class="max-w-5xl mx-auto p-6 bg-white shadow-md mt-10 rounded">
+
+  <h1 class="text-2xl font-bold mb-6">Finalizar compra</h1>
+
+  <form id="checkoutForm" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+    <!-- IZQUIERDA -->
+    <div>
+
+      <!-- DATOS -->
+      <section class="mb-6">
+        <h2 class="font-semibold mb-3">Datos personales</h2>
+
+        <div class="space-y-3">
+          <input required placeholder="Nombre completo" class="input">
+          <input type="email" required placeholder="Email" class="input">
+          <input type="tel" required placeholder="Teléfono" class="input">
+        </div>
+      </section>
+
+      <!-- DIRECCIÓN -->
+      <section class="mb-6">
+        <h2 class="font-semibold mb-3">Dirección</h2>
+
+        <div class="space-y-3">
+          <input required placeholder="Dirección" class="input">
+          <input required placeholder="Ciudad" class="input">
+          <input required placeholder="Departamento" class="input">
+          <input required placeholder="Código postal" class="input">
+        </div>
+      </section>
+
+      <!-- PAGOS -->
+      <section>
+        <h2 class="font-semibold mb-4">Método de pago</h2>
+
+        <!-- TARJETA -->
+        <div class="metodo border rounded p-4 mb-4">
+          <label class="flex justify-between mb-2 cursor-pointer">
+            <div class="flex gap-2">
+              <input type="radio" name="metodo_pago" value="tarjeta" checked>
+              <span>Tarjeta (15% OFF)</span>
+            </div>
+            <div class="flex gap-2">
+              <img src="https://img.icons8.com/color/48/visa.png" class="h-6">
+              <img src="https://img.icons8.com/color/48/mastercard.png" class="h-6">
+            </div>
+          </label>
+
+          <div class="contenido grid grid-cols-2 gap-3">
+            <input placeholder="Nombre del titular" class="input campo">
+            <input placeholder="Número de tarjeta (16 dígitos)" class="input campo" id="cardNumber">
+            <input placeholder="MM/AA" class="input campo" id="cardDate">
+            <input placeholder="CVV" class="input campo" id="cardCVV">
+          </div>
+        </div>
+
+        <!-- BANCO -->
+        <div class="metodo border rounded p-4 mb-4">
+          <label class="flex justify-between mb-2 cursor-pointer">
+            <div class="flex gap-2">
+              <input type="radio" name="metodo_pago" value="banco">
+              <span>Banco</span>
+            </div>
+            <img src="https://img.icons8.com/color/48/bank.png" class="h-6">
+          </label>
+
+          <select class="input campo w-full">
+            <option value="">Selecciona tu banco</option>
+            <option>BROU</option>
+            <option>Santander</option>
+            <option>Itaú</option>
+          </select>
+        </div>
+
+        <!-- EFECTIVO -->
+        <div class="metodo border rounded p-4">
+          <label class="flex justify-between mb-2 cursor-pointer">
+            <div class="flex gap-2">
+              <input type="radio" name="metodo_pago" value="efectivo">
+              <span>Efectivo</span>
+            </div>
+            <img src="https://img.icons8.com/color/48/cash.png" class="h-6">
+          </label>
+          <p class="text-sm text-gray-500">Abitab o RedPagos</p>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- DERECHA -->
+    <div class="bg-gray-50 p-4 rounded h-fit">
+
+      <h2 class="font-semibold mb-4">Resumen</h2>
+
+      <div class="flex justify-between">
+        <span>Subtotal</span>
+        <span id="subtotal">$2000</span>
+      </div>
+
+      <div id="descuentoBox" class="flex justify-between text-green-600 hidden">
+        <span>Descuento</span>
+        <span id="descuento"></span>
+      </div>
+
+      <div id="ahorro" class="text-green-600 text-sm hidden"></div>
+
+      <div class="flex justify-between">
+        <span>Impuestos</span>
+        <span>$200</span>
+      </div>
+
+      <hr class="my-3">
+
+      <div class="flex justify-between text-lg font-bold transition-all duration-300" id="totalBox">
+        <span>Total</span>
+        <span id="total">$2200</span>
+      </div>
+
+      <button class="w-full bg-black text-white py-3 mt-4 rounded">
+        Confirmar compra
+      </button>
+
+    </div>
+
+  </form>
+
+</main>
+
+<style>
+.input {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 6px;
+  width: 100%;
+}
+
+.error {
+  border-color: red;
+}
+</style>
+
+<script>
+const subtotal = 2000;
+const impuestos = 200;
+
+const metodos = document.querySelectorAll(".metodo");
+const totalEl = document.getElementById("total");
+
+function actualizar() {
+  let metodo = "tarjeta";
+
+  metodos.forEach(m => {
+    const radio = m.querySelector("input");
+    const campos = m.querySelectorAll(".campo");
+
+    if (radio.checked) {
+      metodo = radio.value;
+      m.classList.remove("opacity-50");
+      campos.forEach(c => c.disabled = false);
+    } else {
+      m.classList.add("opacity-50");
+      campos.forEach(c => c.disabled = true);
+    }
+  });
+
+  calcularTotal(metodo);
+}
+
+function calcularTotal(metodo) {
+  let descuento = 0;
+
+  if (metodo === "tarjeta") {
+    descuento = subtotal * 0.15;
+
+    document.getElementById("descuentoBox").classList.remove("hidden");
+    document.getElementById("ahorro").classList.remove("hidden");
+    document.getElementById("ahorro").innerText = "Ahorras $" + descuento.toFixed(0);
+  } else {
+    document.getElementById("descuentoBox").classList.add("hidden");
+    document.getElementById("ahorro").classList.add("hidden");
+  }
+
+  const total = subtotal - descuento + impuestos;
+
+  document.getElementById("descuento").innerText = "-$" + descuento.toFixed(0);
+
+  totalEl.style.transform = "scale(1.1)";
+  setTimeout(() => totalEl.style.transform = "scale(1)", 200);
+
+  totalEl.innerText = "$" + total.toFixed(0);
+}
+
+// VALIDACIÓN TARJETA
+function validarTarjeta() {
+  let valido = true;
+
+  const number = document.getElementById("cardNumber");
+  const cvv = document.getElementById("cardCVV");
+  const date = document.getElementById("cardDate");
+
+  number.classList.remove("error");
+  cvv.classList.remove("error");
+  date.classList.remove("error");
+
+  if (number.value.length !== 16 || isNaN(number.value)) {
+    number.classList.add("error");
+    valido = false;
+  }
+
+  if (cvv.value.length < 3) {
+    cvv.classList.add("error");
+    valido = false;
+  }
+
+  if (!/^\d{2}\/\d{2}$/.test(date.value)) {
+    date.classList.add("error");
+    valido = false;
+  }
+
+  return valido;
+}
+
+// EVENTOS
+document.querySelectorAll("input[name=metodo_pago]").forEach(r => {
+  r.addEventListener("change", actualizar);
+});
+
+document.getElementById("checkoutForm").addEventListener("submit", e => {
+  const metodo = document.querySelector("input[name=metodo_pago]:checked").value;
+
+  if (metodo === "tarjeta" && !validarTarjeta()) {
+    e.preventDefault();
+    alert("Revisa los datos de la tarjeta");
+  }
+});
+
+actualizar();
+</script>
+
+</body>
+</html>
