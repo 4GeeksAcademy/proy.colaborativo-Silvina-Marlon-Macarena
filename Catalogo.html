@@ -11,6 +11,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            cursor: pointer;
         }
 
         #product-list .products-grid > article.hidden {
@@ -364,6 +365,7 @@
         const selectCategoria = document.getElementById('categoria-select');
         const selectTalla = document.getElementById('talla');
         const tarjetas = document.querySelectorAll('#product-list article');
+        const urlDetalleProducto = 'Vista-de-producto.html';
         const tallasRopa = [
             { value: '', label: 'Todas' },
             { value: 's', label: 'S' },
@@ -431,6 +433,26 @@
         selectTalla.addEventListener('change', filtrarProductos);
         actualizarOpcionesTalla('todas');
         filtrarProductos();
+
+        tarjetas.forEach((tarjeta) => {
+            tarjeta.setAttribute('role', 'link');
+            tarjeta.setAttribute('tabindex', '0');
+
+            tarjeta.addEventListener('click', (event) => {
+                if (event.target.closest('button, a, input, select, label')) {
+                    return;
+                }
+
+                window.location.href = urlDetalleProducto;
+            });
+
+            tarjeta.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    window.location.href = urlDetalleProducto;
+                }
+            });
+        });
     </script>
 </body>
 </html>
