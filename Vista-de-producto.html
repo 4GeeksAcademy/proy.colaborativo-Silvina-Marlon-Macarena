@@ -7,14 +7,51 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Detalle del Producto</h1>
+    <header class="bg-white border-b border-gray-200">
+        <div class="max-w-5xl mx-auto px-4 py-6">
+            <h1 class="text-2xl font-bold">Detalle del Producto</h1>
+        </div>
     </header>
-    <main>
-        <section id="product-detail">
-            <!-- Información del producto -->
-        </section>
-        <button id="add-to-cart">Agregar al Carrito</button>
+    <main class="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
+        <a href="Catalogo.html" class="inline-flex items-center px-4 py-2 mb-6 rounded-md bg-white border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400">Volver al listado</a>
+
+        <!-- Camisas -->
+        <article id="prod-camisa1" class="producto block">
+            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+                <figure class="figure-par relative overflow-hidden rounded-lg flex justify-center items-center bg-gray-100 h-80">
+                    <img src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada vista frontal" class="w-full h-full object-contain">
+                </figure>
+                <section class="flex flex-col gap-4">
+                    <header>
+                        <h2 class="text-xl md:text-2xl font-semibold">Camisa Marrón Rayada</h2>
+                        <p class="text-sm text-gray-500">Ref: CAM-001</p>
+                        <p class="text-2xl font-bold">$2290</p>
+                    </header>
+                    <div>
+                        <label for="talla-cam1" class="block text-sm font-medium mb-1">Talla</label>
+                        <select id="talla-cam1" class="w-full md:w-1/2 px-3 py-2 border border-gray-300 rounded-md">
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="XL" disabled>XL (no disponible)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="cantidad-cam1" class="block text-sm font-medium mb-1">Cantidad</label>
+                        <input id="cantidad-cam1" type="number" min="1" value="1" class="w-24 px-3 py-2 border border-gray-300 rounded-md">
+                    </div>
+                    <button type="button" class="mt-2 w-full md:w-1/2 py-3 px-4 bg-gray-900 text-white rounded-md font-semibold">Agregar al carrito</button>
+                </section>
+            </section>
+            <section class="mt-8 bg-white rounded-xl shadow border border-gray-200 p-6">
+                <h3 class="text-lg font-semibold mb-3">Descripción</h3>
+                <ul class="list-disc list-inside text-gray-700">
+                    <li><span class="font-medium">Materiales:</span> Algodón ligero</li>
+                    <li><span class="font-medium">Uso recomendado:</span> Oficina y salidas casuales</li>
+                </ul>
+            </section>
+        </article>
+        <!-- ...aquí irían los otros 19 productos, cada uno con su bloque y datos reales... -->
     </main>
 </body>
 </html>
