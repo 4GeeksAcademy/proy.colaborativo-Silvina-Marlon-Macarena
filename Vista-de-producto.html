@@ -41,46 +41,48 @@
             </form>
 
             <div class="flex items-center gap-2">
-                <a href="Catalogo.html#product-list" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
+                <a href="Catalogo.html" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
                 <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
             </div>
         </nav>
     </header>
 
-    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-6 md:py-8">
+    <main id="contenido" class="mx-auto w-[92%] max-w-5xl py-6 md:py-8">
         <a href="Catalogo.html#product-list" class="mb-6 inline-flex rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100">Volver al listado</a>
 
         <article id="product-view" class="space-y-8">
-            <section class="rounded-2xl border border-slate-300 bg-white p-4 shadow-sm md:p-8">
-                <div class="grid gap-8 md:grid-cols-2 md:items-start">
-                    <figure class="group relative flex h-[320px] items-center justify-center overflow-hidden rounded-xl bg-slate-200 md:h-[380px]">
+            <section class="relative rounded-2xl border border-slate-300 bg-white p-4 shadow-sm md:p-6">
+                <button id="prev-product" type="button" aria-label="Producto anterior" class="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-300 bg-white px-3 py-2 text-2xl font-bold text-slate-700 shadow-sm transition hover:bg-slate-100 md:-left-6 md:px-4 md:py-3">‹</button>
+                <button id="next-product" type="button" aria-label="Producto siguiente" class="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border border-slate-300 bg-white px-3 py-2 text-2xl font-bold text-slate-700 shadow-sm transition hover:bg-slate-100 md:-right-6 md:px-4 md:py-3">›</button>
+                <div class="grid gap-6 md:grid-cols-2 md:items-start">
+                    <figure class="group relative flex h-[280px] items-center justify-center overflow-hidden rounded-xl bg-slate-200 md:h-[340px]">
                         <img id="product-image-a" src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada vista frontal" class="absolute inset-0 h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0">
                         <img id="product-image-b" src="Recursos Gráficos/Camisas/Camisa1-b.jpg" alt="Camisa Marrón Rayada vista trasera" class="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </figure>
 
                     <section>
-                        <h1 id="product-name" class="text-4xl font-bold text-slate-900">Camisa Marrón Rayada</h1>
-                        <p id="product-ref" class="mt-1 text-xl text-slate-500">Ref: CAM-001</p>
-                        <p id="product-price" class="mt-3 text-5xl font-bold text-slate-900">$2290</p>
+                        <h1 id="product-name" class="text-3xl font-bold text-slate-900">Camisa Marrón Rayada</h1>
+                        <p id="product-ref" class="mt-1 text-base text-slate-500">Ref: CAM-001</p>
+                        <p id="product-price" class="mt-2 text-4xl font-bold text-slate-900">$2290</p>
 
-                        <div class="mt-6">
-                            <label for="talla-producto" class="mb-2 block text-3xl font-semibold text-slate-900">Talla</label>
-                            <select id="talla-producto" class="w-full max-w-sm rounded-lg border border-slate-300 bg-white px-3 py-3 text-3xl font-medium text-slate-900 outline-none focus:border-loop-700"></select>
+                        <div class="mt-5">
+                            <label for="talla-producto" class="mb-2 block text-xl font-semibold text-slate-900">Talla</label>
+                            <select id="talla-producto" class="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700"></select>
                         </div>
 
-                        <div class="mt-6">
-                            <label for="cantidad-producto" class="mb-2 block text-3xl font-semibold text-slate-900">Cantidad</label>
-                            <input id="cantidad-producto" type="number" min="1" value="1" class="w-24 rounded-lg border border-slate-300 px-3 py-3 text-3xl font-medium text-slate-900 outline-none focus:border-loop-700">
+                        <div class="mt-5">
+                            <label for="cantidad-producto" class="mb-2 block text-xl font-semibold text-slate-900">Cantidad</label>
+                            <input id="cantidad-producto" type="number" min="1" value="1" class="w-20 rounded-lg border border-slate-300 px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700">
                         </div>
 
-                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-sm items-center justify-center rounded-lg bg-slate-900 px-6 py-4 text-3xl font-semibold text-white transition hover:bg-slate-800">Agregar al carrito</a>
+                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-slate-900 px-5 py-3 text-xl font-semibold text-white transition hover:bg-slate-800">Agregar al carrito</a>
                     </section>
                 </div>
             </section>
 
-            <section class="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm md:p-8">
-                <h2 class="mb-4 text-4xl font-semibold text-slate-900">Descripción</h2>
-                <ul class="list-disc space-y-2 pl-6 text-3xl text-slate-800">
+            <section class="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm md:p-7">
+                <h2 class="mb-4 text-3xl font-semibold text-slate-900">Descripción</h2>
+                <ul class="list-disc space-y-2 pl-6 text-xl text-slate-800">
                     <li><span class="font-semibold">Materiales:</span> <span id="product-material">Algodón ligero</span></li>
                     <li><span class="font-semibold">Uso recomendado:</span> <span id="product-use">Oficina y salidas casuales</span></li>
                 </ul>
@@ -145,9 +147,16 @@
             'prod-calzado5': { name: 'Zapatilla Urbana Marrón', ref: 'CAL-005', price: '$4990', sizes: ['37', '38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado5-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado5-b.webp', material: 'Textil premium', use: 'Recorridos urbanos diarios' }
         };
 
-        const hash = window.location.hash || '#prod-camisa1';
-        const productId = hash.replace('#', '');
-        const product = productos[productId] || productos['prod-camisa1'];
+        const orderedProductIds = Object.keys(productos);
+
+        function resolveProductIdFromHash() {
+            const hash = window.location.hash || '#prod-camisa1';
+            const id = hash.replace('#', '');
+            return productos[id] ? id : 'prod-camisa1';
+        }
+
+        let currentProductId = resolveProductIdFromHash();
+        let currentProduct = productos[currentProductId];
 
         const productName = document.getElementById('product-name');
         const productRef = document.getElementById('product-ref');
@@ -157,10 +166,27 @@
         const productMaterial = document.getElementById('product-material');
         const productUse = document.getElementById('product-use');
         const tallaSelect = document.getElementById('talla-producto');
-        const productView = document.getElementById('product-view');
+        const cantidadInput = document.getElementById('cantidad-producto');
+        const addToCart = document.getElementById('add-to-cart');
+        const prevProductBtn = document.getElementById('prev-product');
+        const nextProductBtn = document.getElementById('next-product');
 
-        function renderProduct(data) {
-            productView.id = productId;
+        function getAllSizesByProductId(id) {
+            if (id.startsWith('prod-calzado')) {
+                return ['35', '36', '37', '38', '39', '40'];
+            }
+
+            if (id.startsWith('prod-accesorio')) {
+                return ['Única'];
+            }
+
+            return ['S', 'M', 'L', 'XL'];
+        }
+
+        function renderProduct(productId, data) {
+            currentProductId = productId;
+            currentProduct = data;
+
             productName.textContent = data.name;
             productRef.textContent = `Ref: ${data.ref}`;
             productPrice.textContent = data.price;
@@ -171,14 +197,85 @@
             productMaterial.textContent = data.material;
             productUse.textContent = data.use;
 
-            tallaSelect.innerHTML = data.sizes
-                .map((size) => `<option value="${size}">${size}</option>`)
+            const allSizes = getAllSizesByProductId(productId);
+            const availableSizes = new Set(data.sizes);
+
+            tallaSelect.innerHTML = allSizes
+                .map((size) => {
+                    if (availableSizes.has(size)) {
+                        return `<option value="${size}">${size}</option>`;
+                    }
+
+                    return `<option value="${size}" disabled style="color:#94a3b8;">${size} - No disponible</option>`;
+                })
                 .join('');
+
+            tallaSelect.value = data.sizes[0] || '';
 
             document.title = `${data.name} | Loop`;
         }
 
-        renderProduct(product);
+        function getAdjacentProductId(direction) {
+            const currentIndex = orderedProductIds.indexOf(currentProductId);
+            const nextIndex = (currentIndex + direction + orderedProductIds.length) % orderedProductIds.length;
+            return orderedProductIds[nextIndex];
+        }
+
+        function navigateToProduct(direction) {
+            const targetId = getAdjacentProductId(direction);
+            window.location.hash = targetId;
+            renderProduct(targetId, productos[targetId]);
+        }
+
+        function getCart() {
+            try {
+                const raw = localStorage.getItem('loop_cart');
+                return raw ? JSON.parse(raw) : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveCart(items) {
+            localStorage.setItem('loop_cart', JSON.stringify(items));
+        }
+
+        addToCart.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const quantity = Math.max(1, Number(cantidadInput.value) || 1);
+            const selectedSize = tallaSelect.value || 'N/A';
+            const cart = getCart();
+
+            const existingIndex = cart.findIndex((item) => item.id === currentProductId && item.size === selectedSize);
+
+            if (existingIndex >= 0) {
+                cart[existingIndex].qty += quantity;
+            } else {
+                cart.push({
+                    id: currentProductId,
+                    name: currentProduct.name,
+                    ref: currentProduct.ref,
+                    price: currentProduct.price,
+                    size: selectedSize,
+                    qty: quantity,
+                    image: currentProduct.imageA
+                });
+            }
+
+            saveCart(cart);
+            window.location.href = 'Carrito.html';
+        });
+
+        prevProductBtn.addEventListener('click', () => navigateToProduct(-1));
+        nextProductBtn.addEventListener('click', () => navigateToProduct(1));
+
+        window.addEventListener('hashchange', () => {
+            const nextId = resolveProductIdFromHash();
+            renderProduct(nextId, productos[nextId]);
+        });
+
+        renderProduct(currentProductId, currentProduct);
     </script>
 </body>
 </html>
