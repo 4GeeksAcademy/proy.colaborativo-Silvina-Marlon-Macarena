@@ -2,6 +2,8 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="./favicon.ico">
   <title>Checkout PRO</title>
   <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -45,53 +47,67 @@
         <h2 class="font-semibold mb-4">Método de pago</h2>
 
         <!-- TARJETA -->
-        <div class="metodo border rounded p-4 mb-4">
+        <div class="metodo border rounded p-4 mb-4 transition">
           <label class="flex justify-between mb-2 cursor-pointer">
             <div class="flex gap-2">
               <input type="radio" name="metodo_pago" value="tarjeta" checked>
               <span>Tarjeta (15% OFF)</span>
             </div>
-            <div class="flex gap-2">
-              <img src="https://img.icons8.com/color/48/visa.png" class="h-6">
-              <img src="https://img.icons8.com/color/48/mastercard.png" class="h-6">
+            <div class="flex gap-2 items-center">
+              <img src="./Tarjetas/visa-logo-548541.jpg" alt="Visa" class="h-6 object-contain">
+              <img src="./Tarjetas/MasterCard_Logo.svg.png" alt="Mastercard" class="h-6 object-contain">
             </div>
           </label>
 
-          <div class="contenido grid grid-cols-2 gap-3">
+          <div class="grid grid-cols-2 gap-3">
             <input placeholder="Nombre del titular" class="input campo">
-            <input placeholder="Número de tarjeta (16 dígitos)" class="input campo" id="cardNumber">
-            <input placeholder="MM/AA" class="input campo" id="cardDate">
-            <input placeholder="CVV" class="input campo" id="cardCVV">
+            <input placeholder="Número de tarjeta (16 dígitos)" class="input campo" id="cardNumber" maxlength="16" inputmode="numeric">
+            <input placeholder="MM/AA" class="input campo" id="cardDate" maxlength="5" inputmode="numeric">
+            <input placeholder="CVV" class="input campo" id="cardCVV" maxlength="4" inputmode="numeric">
           </div>
         </div>
 
         <!-- BANCO -->
-        <div class="metodo border rounded p-4 mb-4">
+        <div class="metodo border rounded p-4 mb-4 transition">
           <label class="flex justify-between mb-2 cursor-pointer">
             <div class="flex gap-2">
               <input type="radio" name="metodo_pago" value="banco">
               <span>Banco</span>
             </div>
-            <img src="https://img.icons8.com/color/48/bank.png" class="h-6">
+
+            <div class="flex gap-2 items-center">
+              <img src="Bancos/BBVA-logo.png" alt="BBVA" class="h-6 object-contain">
+              <img src="Bancos/Itau.jpg" alt="Itaú" class="h-6 object-contain">
+              <img src="Bancos/HSBC_Logo_2018.png" alt="HSBC" class="h-6 object-contain">
+              <img src="Bancos/Logo_Scotiabank_(Kanada).svg.png" alt="Scotiabank" class="h-6 object-contain">
+              <img src="Bancos/Santander_Logo.PNG" alt="Santander" class="h-6 object-contain">
+            </div>
           </label>
 
-          <select class="input campo w-full">
+          <select class="input campo w-full" id="bankSelect">
             <option value="">Selecciona tu banco</option>
-            <option>BROU</option>
-            <option>Santander</option>
-            <option>Itaú</option>
+            <option value="BROU">BROU</option>
+            <option value="Santander">Santander</option>
+            <option value="Itaú">Itaú</option>
+            <option value="BBVA">BBVA</option>
+            <option value="HSBC">HSBC</option>
+            <option value="Scotiabank">Scotiabank</option>
           </select>
         </div>
 
         <!-- EFECTIVO -->
-        <div class="metodo border rounded p-4">
+        <div class="metodo border rounded p-4 transition">
           <label class="flex justify-between mb-2 cursor-pointer">
             <div class="flex gap-2">
               <input type="radio" name="metodo_pago" value="efectivo">
               <span>Efectivo</span>
             </div>
-            <img src="https://img.icons8.com/color/48/cash.png" class="h-6">
+            <div class="flex gap-2">
+              <img src="Efectivo/abitab_icon.jpg" alt="Abitab" class="h-6 object-contain">
+              <img src="Efectivo/logo-red-pagos-e1565408024839.jpg" alt="RedPagos" class="h-6 object-contain">
+            </div>
           </label>
+
           <p class="text-sm text-gray-500">Abitab o RedPagos</p>
         </div>
 
@@ -123,12 +139,12 @@
 
       <hr class="my-3">
 
-      <div class="flex justify-between text-lg font-bold transition-all duration-300" id="totalBox">
+      <div class="flex justify-between text-lg font-bold" id="totalBox">
         <span>Total</span>
         <span id="total">$2200</span>
       </div>
 
-      <button class="w-full bg-black text-white py-3 mt-4 rounded">
+      <button type="submit" class="w-full bg-black text-white py-3 mt-4 rounded">
         Confirmar compra
       </button>
 
@@ -149,6 +165,14 @@
 .error {
   border-color: red;
 }
+
+.metodo {
+  transition: 0.3s;
+}
+
+.metodo.opacity-50 {
+  opacity: 0.5;
+}
 </style>
 
 <script>
@@ -167,10 +191,14 @@ function actualizar() {
 
     if (radio.checked) {
       metodo = radio.value;
+
       m.classList.remove("opacity-50");
+      radio.disabled = false;
+
       campos.forEach(c => c.disabled = false);
     } else {
       m.classList.add("opacity-50");
+      radio.disabled = false;
       campos.forEach(c => c.disabled = true);
     }
   });
@@ -195,14 +223,9 @@ function calcularTotal(metodo) {
   const total = subtotal - descuento + impuestos;
 
   document.getElementById("descuento").innerText = "-$" + descuento.toFixed(0);
-
-  totalEl.style.transform = "scale(1.1)";
-  setTimeout(() => totalEl.style.transform = "scale(1)", 200);
-
   totalEl.innerText = "$" + total.toFixed(0);
 }
 
-// VALIDACIÓN TARJETA
 function validarTarjeta() {
   let valido = true;
 
@@ -214,12 +237,15 @@ function validarTarjeta() {
   cvv.classList.remove("error");
   date.classList.remove("error");
 
-  if (number.value.length !== 16 || isNaN(number.value)) {
+  const cleanNumber = number.value.replace(/\s+/g, "");
+  const cleanCVV = cvv.value.trim();
+
+  if (!/^\d{16}$/.test(cleanNumber)) {
     number.classList.add("error");
     valido = false;
   }
 
-  if (cvv.value.length < 3) {
+  if (!/^\d{3,4}$/.test(cleanCVV)) {
     cvv.classList.add("error");
     valido = false;
   }
@@ -232,21 +258,67 @@ function validarTarjeta() {
   return valido;
 }
 
-// EVENTOS
 document.querySelectorAll("input[name=metodo_pago]").forEach(r => {
   r.addEventListener("change", actualizar);
 });
 
+document.getElementById("bankSelect").addEventListener("change", e => {
+  e.target.classList.remove("error");
+});
+
 document.getElementById("checkoutForm").addEventListener("submit", e => {
   const metodo = document.querySelector("input[name=metodo_pago]:checked").value;
+  let valido = false;
 
-  if (metodo === "tarjeta" && !validarTarjeta()) {
-    e.preventDefault();
-    alert("Revisa los datos de la tarjeta");
+  if (metodo === "tarjeta") {
+    if (validarTarjeta()) valido = true;
+    else alert("⚠️ Completa correctamente los datos de la tarjeta");
   }
+
+  if (metodo === "banco") {
+    const banco = document.getElementById("bankSelect");
+
+    const bankUrls = {
+      BROU: "https://www.brou.com.uy",
+      Santander: "https://www.santander.com.uy",
+      Itaú: "https://www.itau.com.uy",
+      BBVA: "https://www.bbva.com.uy",
+      HSBC: "https://www.hsbc.com.uy",
+      Scotiabank: "https://www.scotiabank.com.uy"
+    };
+
+    if (banco.value === "") {
+      banco.classList.add("error");
+      alert("⚠️ Debes seleccionar un banco");
+    } else {
+      e.preventDefault();
+      const url = bankUrls[banco.value];
+      if (!url) {
+        alert("⚠️ Banco no válido");
+        return;
+      }
+      window.location.href = url;
+      return;
+    }
+  }
+
+  if (metodo === "efectivo") {
+    valido = true;
+  }
+
+  if (!valido) e.preventDefault();
 });
 
 actualizar();
+</script>
+
+<!-- FOOTER / COPYRIGHT -->
+<footer class="mt-16 text-center text-sm text-gray-500 py-6">
+  © <span id="year"></span> Checkout PRO. Todos los derechos reservados.
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
 </script>
 
 </body>
