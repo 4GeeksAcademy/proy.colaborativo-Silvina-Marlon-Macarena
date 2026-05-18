@@ -3,55 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vista de Producto</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Vista de Producto | Loop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
 </head>
-<body>
-    <header class="bg-white border-b border-gray-200">
-        <div class="max-w-5xl mx-auto px-4 py-6">
-            <h1 class="text-2xl font-bold">Detalle del Producto</h1>
-        </div>
-    </header>
-    <main class="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
-        <a href="Catalogo.html" class="inline-flex items-center px-4 py-2 mb-6 rounded-md bg-white border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400">Volver al listado</a>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
 
-        <!-- Camisas -->
-        <article id="prod-camisa1" class="producto block">
-            <section class="bg-white rounded-xl shadow-md border border-gray-200 p-4 md:p-8 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-                <figure class="figure-par relative overflow-hidden rounded-lg flex justify-center items-center bg-gray-100 h-80">
-                    <img src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada vista frontal" class="w-full h-full object-contain">
-                </figure>
-                <section class="flex flex-col gap-4">
-                    <header>
-                        <h2 class="text-xl md:text-2xl font-semibold">Camisa Marrón Rayada</h2>
-                        <p class="text-sm text-gray-500">Ref: CAM-001</p>
-                        <p class="text-2xl font-bold">$2290</p>
-                    </header>
-                    <div>
-                        <label for="talla-cam1" class="block text-sm font-medium mb-1">Talla</label>
-                        <select id="talla-cam1" class="w-full md:w-1/2 px-3 py-2 border border-gray-300 rounded-md">
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL" disabled>XL (no disponible)</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="cantidad-cam1" class="block text-sm font-medium mb-1">Cantidad</label>
-                        <input id="cantidad-cam1" type="number" min="1" value="1" class="w-24 px-3 py-2 border border-gray-300 rounded-md">
-                    </div>
-                    <button type="button" class="mt-2 w-full md:w-1/2 py-3 px-4 bg-gray-900 text-white rounded-md font-semibold">Agregar al carrito</button>
-                </section>
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                </div>
+            </form>
+
+            <div class="flex items-center gap-2">
+                <a href="Catalogo.html#product-list" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
+                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-6 md:py-8">
+        <a href="Catalogo.html#product-list" class="mb-6 inline-flex rounded-lg border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-100">Volver al listado</a>
+
+        <article id="product-view" class="space-y-8">
+            <section class="rounded-2xl border border-slate-300 bg-white p-4 shadow-sm md:p-8">
+                <div class="grid gap-8 md:grid-cols-2 md:items-start">
+                    <figure class="group relative flex h-[320px] items-center justify-center overflow-hidden rounded-xl bg-slate-200 md:h-[380px]">
+                        <img id="product-image-a" src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada vista frontal" class="absolute inset-0 h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0">
+                        <img id="product-image-b" src="Recursos Gráficos/Camisas/Camisa1-b.jpg" alt="Camisa Marrón Rayada vista trasera" class="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    </figure>
+
+                    <section>
+                        <h1 id="product-name" class="text-4xl font-bold text-slate-900">Camisa Marrón Rayada</h1>
+                        <p id="product-ref" class="mt-1 text-xl text-slate-500">Ref: CAM-001</p>
+                        <p id="product-price" class="mt-3 text-5xl font-bold text-slate-900">$2290</p>
+
+                        <div class="mt-6">
+                            <label for="talla-producto" class="mb-2 block text-3xl font-semibold text-slate-900">Talla</label>
+                            <select id="talla-producto" class="w-full max-w-sm rounded-lg border border-slate-300 bg-white px-3 py-3 text-3xl font-medium text-slate-900 outline-none focus:border-loop-700"></select>
+                        </div>
+
+                        <div class="mt-6">
+                            <label for="cantidad-producto" class="mb-2 block text-3xl font-semibold text-slate-900">Cantidad</label>
+                            <input id="cantidad-producto" type="number" min="1" value="1" class="w-24 rounded-lg border border-slate-300 px-3 py-3 text-3xl font-medium text-slate-900 outline-none focus:border-loop-700">
+                        </div>
+
+                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-sm items-center justify-center rounded-lg bg-slate-900 px-6 py-4 text-3xl font-semibold text-white transition hover:bg-slate-800">Agregar al carrito</a>
+                    </section>
+                </div>
             </section>
-            <section class="mt-8 bg-white rounded-xl shadow border border-gray-200 p-6">
-                <h3 class="text-lg font-semibold mb-3">Descripción</h3>
-                <ul class="list-disc list-inside text-gray-700">
-                    <li><span class="font-medium">Materiales:</span> Algodón ligero</li>
-                    <li><span class="font-medium">Uso recomendado:</span> Oficina y salidas casuales</li>
+
+            <section class="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm md:p-8">
+                <h2 class="mb-4 text-4xl font-semibold text-slate-900">Descripción</h2>
+                <ul class="list-disc space-y-2 pl-6 text-3xl text-slate-800">
+                    <li><span class="font-semibold">Materiales:</span> <span id="product-material">Algodón ligero</span></li>
+                    <li><span class="font-semibold">Uso recomendado:</span> <span id="product-use">Oficina y salidas casuales</span></li>
                 </ul>
             </section>
         </article>
-        <!-- ...aquí irían los otros 19 productos, cada uno con su bloque y datos reales... -->
     </main>
+
+    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-8 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
+                <address class="space-y-2 text-sm not-italic text-slate-300">
+                    <p>soporte@loop.com</p>
+                    <p>+34 600 000 000</p>
+                    <p>Lun a Vie 9:00 - 18:00</p>
+                </address>
+            </section>
+        </div>
+        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const productos = {
+            'prod-camisa1': { name: 'Camisa Marrón Rayada', ref: 'CAM-001', price: '$2290', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Camisas/Camisa1-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa1-b.jpg', material: 'Algodón ligero', use: 'Oficina y salidas casuales' },
+            'prod-camisa2': { name: 'Camisa de Cuadros Marrones', ref: 'CAM-002', price: '$2390', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Camisas/Camisa2-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa2-b.jpg', material: 'Algodón y lino', use: 'Uso diario y looks urbanos' },
+            'prod-camisa3': { name: 'Blusa Celeste Plisada', ref: 'CAM-003', price: '$2490', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Camisas/Camisa3-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa3-b.jpg', material: 'Tejido liviano plisado', use: 'Salidas casuales y oficina' },
+            'prod-camisa4': { name: 'Camisa Oversize Negra con Brillo', ref: 'CAM-004', price: '$2590', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Camisas/camisa4-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa4-b.webp', material: 'Poliéster suave', use: 'Eventos y noche urbana' },
+            'prod-camisa5': { name: 'Camisa con Estampado', ref: 'CAM-005', price: '$2690', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Camisas/camisa5-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa5-b.webp', material: 'Algodón estampado', use: 'Look casual y creativo' },
+            'prod-pantalon1': { name: 'Pantalón Marrón Recto', ref: 'PAN-001', price: '$2790', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Pantalones/Pantalon1-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon1-b.jpg', material: 'Gabardina de algodón', use: 'Trabajo y salidas casuales' },
+            'prod-pantalon2': { name: 'Pantalón Estampado Azul', ref: 'PAN-002', price: '$2890', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/Pantalon2-a.jpg', imageB: 'Recursos Gráficos/Pantalones/pantalon2-b.jpg', material: 'Tela fresca estampada', use: 'Verano y fines de semana' },
+            'prod-pantalon3': { name: 'Jeans Anchos Oscuros', ref: 'PAN-003', price: '$2990', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Pantalones/Pantalon3-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon3-b.jpg', material: 'Denim resistente', use: 'Uso diario urbano' },
+            'prod-pantalon4': { name: 'Pantalón Ancho Azul Medio', ref: 'PAN-004', price: '$3090', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/pantalon4-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon4-b.webp', material: 'Mezcla de algodón y elastano', use: 'Outfits relajados' },
+            'prod-pantalon5': { name: 'Pantalón Marfil', ref: 'PAN-005', price: '$3190', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Pantalones/pantalon5-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon5-b.webp', material: 'Tela de caída suave', use: 'Oficina y eventos informales' },
+            'prod-accesorio1': { name: 'Caravana dorada', ref: 'ACC-001', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio1-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio1-b.webp', material: 'Aleación dorada', use: 'Complemento para ocasión especial' },
+            'prod-accesorio2': { name: 'Brazalete Dorado', ref: 'ACC-002', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio2-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio2-b.webp', material: 'Metal pulido', use: 'Looks elegantes y casuales' },
+            'prod-accesorio3': { name: 'Cinturón Negro', ref: 'ACC-003', price: '$799', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Accesorios/accesorio3-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio3-b.webp', material: 'Cuero sintético', use: 'Ajuste para jeans y pantalones' },
+            'prod-accesorio4': { name: 'Bandolera Negra', ref: 'ACC-004', price: '$1599', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio4-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio4-b.webp', material: 'Textil reforzado', use: 'Traslado diario y urbano' },
+            'prod-accesorio5': { name: 'Bufanda tejida', ref: 'ACC-005', price: '$999', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio5-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio5-b.webp', material: 'Tejido acrílico', use: 'Abrigo en clima fresco' },
+            'prod-calzado1': { name: 'Bota Texana Negra', ref: 'CAL-001', price: '$3790', sizes: ['35', '36', '37'], imageA: 'Recursos Gráficos/Calzado/calzado1-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado1-b.webp', material: 'Cuero sintético', use: 'Look urbano y western' },
+            'prod-calzado2': { name: 'Zapato Derby Marrón', ref: 'CAL-002', price: '$3990', sizes: ['36', '37', '38'], imageA: 'Recursos Gráficos/Calzado/calzado2-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado2-b.webp', material: 'Acabado tipo cuero', use: 'Oficina y ocasiones formales' },
+            'prod-calzado3': { name: 'Botas de Cuero Negras', ref: 'CAL-003', price: '$4290', sizes: ['38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado3-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado3-b.webp', material: 'Cuero y suela firme', use: 'Uso diario de alto tránsito' },
+            'prod-calzado4': { name: 'Zapatillas Deportivas', ref: 'CAL-004', price: '$4590', sizes: ['35', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado4-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado4-b.webp', material: 'Malla transpirable', use: 'Actividad urbana y fitness' },
+            'prod-calzado5': { name: 'Zapatilla Urbana Marrón', ref: 'CAL-005', price: '$4990', sizes: ['37', '38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado5-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado5-b.webp', material: 'Textil premium', use: 'Recorridos urbanos diarios' }
+        };
+
+        const hash = window.location.hash || '#prod-camisa1';
+        const productId = hash.replace('#', '');
+        const product = productos[productId] || productos['prod-camisa1'];
+
+        const productName = document.getElementById('product-name');
+        const productRef = document.getElementById('product-ref');
+        const productPrice = document.getElementById('product-price');
+        const productImageA = document.getElementById('product-image-a');
+        const productImageB = document.getElementById('product-image-b');
+        const productMaterial = document.getElementById('product-material');
+        const productUse = document.getElementById('product-use');
+        const tallaSelect = document.getElementById('talla-producto');
+        const productView = document.getElementById('product-view');
+
+        function renderProduct(data) {
+            productView.id = productId;
+            productName.textContent = data.name;
+            productRef.textContent = `Ref: ${data.ref}`;
+            productPrice.textContent = data.price;
+            productImageA.src = data.imageA;
+            productImageA.alt = `${data.name} vista frontal`;
+            productImageB.src = data.imageB;
+            productImageB.alt = `${data.name} vista trasera`;
+            productMaterial.textContent = data.material;
+            productUse.textContent = data.use;
+
+            tallaSelect.innerHTML = data.sizes
+                .map((size) => `<option value="${size}">${size}</option>`)
+                .join('');
+
+            document.title = `${data.name} | Loop`;
+        }
+
+        renderProduct(product);
+    </script>
 </body>
 </html>

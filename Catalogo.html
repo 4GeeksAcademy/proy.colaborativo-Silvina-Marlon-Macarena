@@ -5,38 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo | Tienda de Ropa</title>
     <meta name="description" content="Explora nuestro catálogo de ropa con camisas, pantalones, accesorios y calzado para todos los estilos.">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
     <style>
-        #product-list .group > div.relative {
-            background: #f3f4f6;
+        #product-list .products-grid > article {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: pointer;
         }
 
-        #product-list .group > div.relative img {
-            object-fit: contain !important;
-            transform: scale(1.05);
+        #product-list .products-grid > article.hidden {
+            display: none;
+        }
+
+        #product-list .products-grid > article > div:first-child {
+            position: relative;
+            height: 16rem;
+            width: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        #product-list .products-grid > article > div:last-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <header class="bg-white border-b border-gray-200">
-        <h1 class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-3xl font-bold tracking-tight">Catálogo de la Tienda</h1>
-    </header>
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <nav class="mb-8">
-            <ul class="flex flex-wrap gap-3 sm:gap-4">
-                <li><a href="index.html" class="inline-block px-4 py-2 rounded-md bg-white border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400">Inicio</a></li>
-                <li><a href="Catalogo.html" class="inline-block px-4 py-2 rounded-md bg-gray-900 text-white border border-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-400" aria-current="page">Catálogo</a></li>
-                <li><a href="Carrito.html" class="inline-block px-4 py-2 rounded-md bg-white border border-gray-300 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400">Carrito</a></li>
-            </ul>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
+
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                </div>
+            </form>
+
+            <div class="flex items-center gap-2">
+                <a href="Catalogo.html#product-list" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600" aria-current="page">Catálogo</a>
+                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+            </div>
         </nav>
+    </header>
+    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-8 pb-10 md:py-10 md:pb-12">
+        <h1 class="mb-8 text-3xl font-bold tracking-tight">Catálogo de la Tienda</h1>
+
+        <!-- Filtros de categoría -->
+        <div class="flex flex-wrap gap-2 mb-8">
+            <input type="radio" name="categoria" id="cat-todas" value="todas" class="peer hidden" checked>
+            <label for="cat-todas" class="cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 peer-checked:bg-gray-900 peer-checked:text-white">Todas</label>
+
+            <input type="radio" name="categoria" id="cat-camisas" value="camisas" class="peer hidden">
+            <label for="cat-camisas" class="cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 peer-checked:bg-gray-900 peer-checked:text-white">Camisas</label>
+
+            <input type="radio" name="categoria" id="cat-pantalones" value="pantalones" class="peer hidden">
+            <label for="cat-pantalones" class="cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 peer-checked:bg-gray-900 peer-checked:text-white">Pantalones</label>
+
+            <input type="radio" name="categoria" id="cat-accesorios" value="accesorios" class="peer hidden">
+            <label for="cat-accesorios" class="cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 peer-checked:bg-gray-900 peer-checked:text-white">Accesorios</label>
+
+            <input type="radio" name="categoria" id="cat-calzado" value="calzado" class="peer hidden">
+            <label for="cat-calzado" class="cursor-pointer px-4 py-2 rounded-md border border-gray-300 bg-white hover:bg-gray-100 peer-checked:bg-gray-900 peer-checked:text-white">Calzado</label>
+        </div>
 
         <section aria-labelledby="filtros-titulo" class="mb-10 bg-white border border-gray-200 rounded-xl p-5 sm:p-6">
             <h2 id="filtros-titulo" class="text-xl font-semibold mb-4">Filtros</h2>
             <form action="#" method="get" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                    <label for="categoria" class="block text-sm font-medium mb-2">Categoría</label>
-                    <select id="categoria" name="categoria" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
-                        <option value="">Todas</option>
+                    <label for="categoria-select" class="block text-sm font-medium mb-2">Categoría</label>
+                    <select id="categoria-select" name="categoria-select" class="w-full px-3 py-2 bg-white border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-gray-400">
+                        <option value="todas">Todas</option>
                         <option value="camisas">Camisas</option>
                         <option value="pantalones">Pantalones</option>
                         <option value="accesorios">Accesorios</option>
@@ -58,9 +123,9 @@
 
         <section id="product-list" aria-labelledby="productos-titulo">
             <h2 id="productos-titulo" class="text-2xl font-semibold mb-6">Productos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <div class="relative h-56 bg-gray-200">
+            <div class="products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="s,m,l">
+                    <div class="relative h-56 bg-gray-200 overflow-hidden">
                         <img src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Mujer con camisa marrón a rayas finas y bolsillo frontal, vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Camisas/Camisa1-b.jpg" alt="Vista trasera de camisa marrón a rayas finas" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
@@ -72,8 +137,8 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <div class="relative h-56 bg-gray-200">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="m,l,xl">
+                    <div class="relative h-56 bg-gray-200 overflow-hidden">
                         <img src="Recursos Gráficos/Camisas/Camisa2-a.jpg" alt="Mujer con camisa y pantalón de cuadros marrones en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Camisas/Camisa2-b.jpg" alt="Vista trasera de camisa de cuadros marrones" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
@@ -85,8 +150,8 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <div class="relative h-56 bg-gray-200">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="s,m">
+                    <div class="relative h-56 bg-gray-200 overflow-hidden">
                         <img src="Recursos Gráficos/Camisas/Camisa3-a.jpg" alt="Mujer con blusa celeste plisada y jeans oscuros, vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Camisas/Camisa3-b.jpg" alt="Vista trasera de blusa celeste plisada con jeans oscuros" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
@@ -98,8 +163,8 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
-                    <div class="relative h-56 bg-gray-200">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="l,xl">
+                    <div class="relative h-56 bg-gray-200 overflow-hidden">
                         <img src="Recursos Gráficos/Camisas/camisa4-a.webp" alt="Camisa modelo 4 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Camisas/camisa4-b.webp" alt="Camisa modelo 4 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
@@ -111,12 +176,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="m,l">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Camisas/camisa5-a.webp" alt="Camisa modelo 5 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Camisas/camisa5-b.webp" alt="Camisa modelo 5 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Camisa con Estampado</h3>
                         <p class="mt-1 text-lg font-bold">$2690</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -124,12 +189,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="pantalones" data-sizes="s,m,l">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Pantalones/Pantalon1-a.jpg" alt="Pantalón marrón recto con dobladillo y cinturón trenzado, vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Pantalones/Pantalon1-b.jpg" alt="Vista trasera de pantalón marrón recto con dobladillo" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Pantalón Marrón Recto</h3>
                         <p class="mt-1 text-lg font-bold">$2790</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -137,12 +202,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="pantalones" data-sizes="m,l,xl">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Pantalones/Pantalon2-a.jpg" alt="Detalle inferior de pantalón estampado azul y rojo con sandalias, vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Pantalones/pantalon2-b.jpg" alt="Vista trasera de pantalón estampado azul y rojo" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Pantalón Estampado Azul</h3>
                         <p class="mt-1 text-lg font-bold">$2890</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -150,12 +215,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="pantalones" data-sizes="s,m">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Pantalones/Pantalon3-a.jpg" alt="Jeans anchos oscuros en vista frontal sobre fondo gris" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Pantalones/Pantalon3-b.jpg" alt="Jeans anchos oscuros en vista trasera sobre fondo gris" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Jeans Anchos Oscuros</h3>
                         <p class="mt-1 text-lg font-bold">$2990</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -163,12 +228,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="pantalones" data-sizes="l,xl">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Pantalones/pantalon4-a.webp" alt="Pantalón beige recto en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Pantalones/pantalon4-b.webp" alt="Pantalón beige recto en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Pantalón Ancho Azul Medio</h3>
                         <p class="mt-1 text-lg font-bold">$3090</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -176,12 +241,12 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="pantalones" data-sizes="m,l">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Pantalones/pantalon5-a.webp" alt="Pantalón modelo 5 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Pantalones/pantalon5-b.webp" alt="Pantalón modelo 5 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Pantalón Marfil</h3>
                         <p class="mt-1 text-lg font-bold">$3190</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
@@ -189,19 +254,19 @@
                     </div>
                 </article>
 
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="accesorios" data-sizes="s,m">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Accesorios/accesorio1-a.webp" alt="Accesorio modelo 1 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Accesorios/accesorio1-b.webp" alt="Accesorio modelo 1 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     </div>
-                    <div class="p-4">
+                        <div class="p-4">
                         <h3 class="font-semibold">Caravana dorada</h3>
                         <p class="mt-1 text-lg font-bold">$499</p>
                         <p class="mt-1 text-xs text-gray-500">Pasa el cursor para ver la vista trasera</p>
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="accesorios" data-sizes="m,l">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Accesorios/accesorio2-a.webp" alt="Accesorio modelo 2 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Accesorios/accesorio2-b.webp" alt="Accesorio modelo 2 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -213,7 +278,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="accesorios" data-sizes="l,xl">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Accesorios/accesorio3-a.webp" alt="Accesorio modelo 3 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Accesorios/accesorio3-b.webp" alt="Accesorio modelo 3 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -225,7 +290,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="accesorios" data-sizes="s,l">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Accesorios/accesorio4-a.webp" alt="Accesorio modelo 4 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Accesorios/accesorio4-b.webp" alt="Accesorio modelo 4 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -237,7 +302,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="accesorios" data-sizes="m,xl">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Accesorios/accesorio5-a.webp" alt="Accesorio modelo 5 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Accesorios/accesorio5-b.webp" alt="Accesorio modelo 5 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -249,7 +314,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="calzado" data-sizes="35,36,37">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Calzado/calzado1-a.webp" alt="Calzado modelo 1 en vista frontal" class="absolute inset-0 w-full h-full object-contain bg-gray-100 transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Calzado/calzado1-b.webp" alt="Calzado modelo 1 en vista trasera" class="absolute inset-0 w-full h-full object-contain bg-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -261,7 +326,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="calzado" data-sizes="36,37,38">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Calzado/calzado2-a.webp" alt="Calzado modelo 2 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Calzado/calzado2-b.webp" alt="Calzado modelo 2 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -273,7 +338,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="calzado" data-sizes="38,39,40">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Calzado/calzado3-a.webp" alt="Calzado modelo 3 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Calzado/calzado3-b.webp" alt="Calzado modelo 3 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -285,7 +350,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="calzado" data-sizes="35,39,40">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Calzado/calzado4-a.webp" alt="Calzado modelo 4 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Calzado/calzado4-b.webp" alt="Calzado modelo 4 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -297,7 +362,7 @@
                         <button type="button" class="mt-4 w-full py-2 px-4 bg-gray-900 text-white rounded-md hover:bg-black">Agregar al carrito</button>
                     </div>
                 </article>
-                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm">
+                <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="calzado" data-sizes="37,38,39,40">
                     <div class="relative h-56 bg-gray-200">
                         <img src="Recursos Gráficos/Calzado/calzado5-a.webp" alt="Calzado modelo 5 en vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
                         <img src="Recursos Gráficos/Calzado/calzado5-b.webp" alt="Calzado modelo 5 en vista trasera" class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -313,117 +378,144 @@
         </section>
     </main>
 
-    <footer class="mt-12 border-t border-gray-200 bg-white">
-        <p class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 text-sm text-gray-600">&copy; 2026 Tienda de Ropa. Todos los derechos reservados.</p>
+    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-8 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
+                <address class="space-y-2 text-sm not-italic text-slate-300">
+                    <p>soporte@loop.com</p>
+                    <p>+34 600 000 000</p>
+                    <p>Lun a Vie 9:00 - 18:00</p>
+                </address>
+            </section>
+        </div>
+        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
     </footer>
 
-        <script>
-            const selectCategoria = document.getElementById('categoria');
-            const selectTalla = document.getElementById('talla');
-            const tarjetas = document.querySelectorAll('#product-list article');
-            const idsProducto = [
-                'prod-camisa1', 'prod-camisa2', 'prod-camisa3', 'prod-camisa4', 'prod-camisa5',
-                'prod-pantalon1', 'prod-pantalon2', 'prod-pantalon3', 'prod-pantalon4', 'prod-pantalon5',
-                'prod-accesorio1', 'prod-accesorio2', 'prod-accesorio3', 'prod-accesorio4', 'prod-accesorio5',
-                'prod-calzado1', 'prod-calzado2', 'prod-calzado3', 'prod-calzado4', 'prod-calzado5'
-            ];
-            const metadatosProducto = [
-                { category: 'camisas', sizes: ['s', 'm', 'l'] },
-                { category: 'camisas', sizes: ['m', 'l', 'xl'] },
-                { category: 'camisas', sizes: ['s', 'm'] },
-                { category: 'camisas', sizes: ['l', 'xl'] },
-                { category: 'camisas', sizes: ['m', 'l'] },
-                { category: 'pantalones', sizes: ['s', 'm', 'l'] },
-                { category: 'pantalones', sizes: ['m', 'l', 'xl'] },
-                { category: 'pantalones', sizes: ['s', 'm'] },
-                { category: 'pantalones', sizes: ['l', 'xl'] },
-                { category: 'pantalones', sizes: ['m', 'l'] },
-                { category: 'accesorios', sizes: ['s', 'm'] },
-                { category: 'accesorios', sizes: ['m', 'l'] },
-                { category: 'accesorios', sizes: ['l', 'xl'] },
-                { category: 'accesorios', sizes: ['s', 'l'] },
-                { category: 'accesorios', sizes: ['m', 'xl'] },
-                { category: 'calzado', sizes: ['35', '36', '37'] },
-                { category: 'calzado', sizes: ['36', '37', '38'] },
-                { category: 'calzado', sizes: ['38', '39', '40'] },
-                { category: 'calzado', sizes: ['35', '39', '40'] },
-                { category: 'calzado', sizes: ['37', '38', '39', '40'] }
-            ];
-            const tallasRopa = [
-                { value: '', label: 'Todas' },
-                { value: 's', label: 'S' },
-                { value: 'm', label: 'M' },
-                { value: 'l', label: 'L' },
-                { value: 'xl', label: 'XL' }
-            ];
-            const tallasCalzado = [
-                { value: '', label: 'Todas' },
-                { value: '35', label: '35' },
-                { value: '36', label: '36' },
-                { value: '37', label: '37' },
-                { value: '38', label: '38' },
-                { value: '39', label: '39' },
-                { value: '40', label: '40' }
-            ];
+    <script>
+        const radiosCategoria = document.querySelectorAll('input[name="categoria"]');
+        const selectCategoria = document.getElementById('categoria-select');
+        const selectTalla = document.getElementById('talla');
+        const tarjetas = document.querySelectorAll('#product-list article');
+        const idsProducto = [
+            'prod-camisa1', 'prod-camisa2', 'prod-camisa3', 'prod-camisa4', 'prod-camisa5',
+            'prod-pantalon1', 'prod-pantalon2', 'prod-pantalon3', 'prod-pantalon4', 'prod-pantalon5',
+            'prod-accesorio1', 'prod-accesorio2', 'prod-accesorio3', 'prod-accesorio4', 'prod-accesorio5',
+            'prod-calzado1', 'prod-calzado2', 'prod-calzado3', 'prod-calzado4', 'prod-calzado5'
+        ];
+        const tallasRopa = [
+            { value: '', label: 'Todas' },
+            { value: 's', label: 'S' },
+            { value: 'm', label: 'M' },
+            { value: 'l', label: 'L' },
+            { value: 'xl', label: 'XL' }
+        ];
+        const tallasCalzado = [
+            { value: '', label: 'Todas' },
+            { value: '35', label: '35' },
+            { value: '36', label: '36' },
+            { value: '37', label: '37' },
+            { value: '38', label: '38' },
+            { value: '39', label: '39' },
+            { value: '40', label: '40' }
+        ];
 
-            function actualizarOpcionesTalla(categoriaActiva) {
-                const opciones = categoriaActiva === 'calzado' ? tallasCalzado : tallasRopa;
-                const valorActual = selectTalla.value;
+        function actualizarOpcionesTalla(categoriaActiva) {
+            const opciones = categoriaActiva === 'calzado' ? tallasCalzado : tallasRopa;
+            const valorActual = selectTalla.value;
 
-                selectTalla.innerHTML = opciones
-                    .map((opcion) => `<option value="${opcion.value}">${opcion.label}</option>`)
-                    .join('');
+            selectTalla.innerHTML = opciones
+                .map((opcion) => `<option value="${opcion.value}">${opcion.label}</option>`)
+                .join('');
 
-                const valorExiste = opciones.some((opcion) => opcion.value === valorActual);
-                selectTalla.value = valorExiste ? valorActual : '';
-            }
+            const valorExiste = opciones.some((opcion) => opcion.value === valorActual);
+            selectTalla.value = valorExiste ? valorActual : '';
+        }
 
-            function filtrarProductos() {
-                const categoriaActiva = selectCategoria.value;
-                const tallaActiva = selectTalla.value;
+        function filtrarProductos() {
+            const categoriaActiva = document.querySelector('input[name="categoria"]:checked').value;
+            const tallaActiva = selectTalla.value;
 
-                tarjetas.forEach((tarjeta) => {
-                    const categoriaProducto = tarjeta.dataset.category;
-                    const tallasProducto = (tarjeta.dataset.sizes || '').split(',');
-                    const coincideCategoria = categoriaActiva === '' || categoriaProducto === categoriaActiva;
-                    const coincideTalla = tallaActiva === '' || tallasProducto.includes(tallaActiva);
-                    tarjeta.classList.toggle('hidden', !(coincideCategoria && coincideTalla));
-                });
-            }
+            tarjetas.forEach((tarjeta) => {
+                const categoriaProducto = tarjeta.dataset.category;
+                const tallasProducto = (tarjeta.dataset.sizes || '').split(',');
 
-            tarjetas.forEach((tarjeta, indice) => {
-                const metadato = metadatosProducto[indice] || { category: 'camisas', sizes: ['s', 'm', 'l'] };
-                tarjeta.dataset.category = metadato.category;
-                tarjeta.dataset.sizes = metadato.sizes.join(',');
+                const coincideCategoria = categoriaActiva === 'todas' || categoriaProducto === categoriaActiva;
+                const coincideTalla = tallaActiva === '' || tallasProducto.includes(tallaActiva);
 
-                tarjeta.style.cursor = 'pointer';
-                tarjeta.setAttribute('tabindex', '0');
-                tarjeta.setAttribute('role', 'link');
-
-                const idProducto = idsProducto[indice] || 'prod-camisa1';
-                const abrirVistaProducto = (event) => {
-                    if (event && event.target.closest('button, a, input, select, label')) {
-                        return;
-                    }
-                    window.location.href = `Vista-de-producto.html#${idProducto}`;
-                };
-
-                tarjeta.addEventListener('click', abrirVistaProducto);
-                tarjeta.addEventListener('keydown', (event) => {
-                    if (event.key === 'Enter' || event.key === ' ') {
-                        event.preventDefault();
-                        abrirVistaProducto();
-                    }
-                });
+                tarjeta.classList.toggle('hidden', !(coincideCategoria && coincideTalla));
             });
+        }
 
-            selectCategoria.addEventListener('change', () => {
-                actualizarOpcionesTalla(selectCategoria.value);
+        radiosCategoria.forEach((radio) => {
+            radio.addEventListener('change', () => {
+                selectCategoria.value = radio.value;
+                actualizarOpcionesTalla(radio.value);
                 filtrarProductos();
             });
-            selectTalla.addEventListener('change', filtrarProductos);
-            actualizarOpcionesTalla('');
+        });
+
+        selectCategoria.addEventListener('change', (event) => {
+            const valor = event.target.value;
+            const radioObjetivo = document.querySelector(`input[name="categoria"][value="${valor}"]`);
+
+            if (radioObjetivo) {
+                radioObjetivo.checked = true;
+            }
+
+            actualizarOpcionesTalla(valor);
             filtrarProductos();
-        </script>
+        });
+
+        selectTalla.addEventListener('change', filtrarProductos);
+        actualizarOpcionesTalla('todas');
+        filtrarProductos();
+
+        tarjetas.forEach((tarjeta, indice) => {
+            tarjeta.setAttribute('role', 'link');
+            tarjeta.setAttribute('tabindex', '0');
+
+            const productId = idsProducto[indice] || 'prod-camisa1';
+            tarjeta.dataset.productId = productId;
+
+            const abrirVistaProducto = (event) => {
+                if (event && event.target.closest('button, a, input, select, label')) {
+                    return;
+                }
+
+                window.location.href = `Vista-de-producto.html#${productId}`;
+            };
+
+            tarjeta.addEventListener('click', (event) => {
+                abrirVistaProducto(event);
+            });
+
+            tarjeta.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    abrirVistaProducto();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
