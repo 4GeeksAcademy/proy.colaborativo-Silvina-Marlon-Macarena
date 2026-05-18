@@ -109,7 +109,7 @@ const renderCart = () => {
           <p class="mt-1 text-xs text-muted md:hidden">Precio unitario: ${formatCurrency(item.unitPrice)}</p>
         </div>
       </article>
-      <div class="flex items-center md:justify-start">
+      <div class="flex items-center md:justify-center">
         <div class="inline-flex items-center overflow-hidden rounded-md border border-line bg-white" aria-label="Cantidad de ${item.name}">
           <button
             type="button"
