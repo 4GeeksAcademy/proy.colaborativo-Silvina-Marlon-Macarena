@@ -6,6 +6,32 @@
     <title>Catálogo | Tienda de Ropa</title>
     <meta name="description" content="Explora nuestro catálogo de ropa con camisas, pantalones, accesorios y calzado para todos los estilos.">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        #product-list .products-grid > article {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        #product-list .products-grid > article.hidden {
+            display: none;
+        }
+
+        #product-list .products-grid > article > div:first-child {
+            position: relative;
+            height: 16rem;
+            width: 100%;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        #product-list .products-grid > article > div:last-child {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex: 1;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
     <header class="bg-white border-b border-gray-200">
@@ -66,7 +92,7 @@
 
         <section id="product-list" aria-labelledby="productos-titulo">
             <h2 id="productos-titulo" class="text-2xl font-semibold mb-6">Productos</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <article class="group bg-white border border-gray-200 rounded-xl overflow-hidden shadow-sm flex" data-category="camisas" data-sizes="s,m,l">
                     <div class="relative h-56 bg-gray-200 overflow-hidden">
                         <img src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Mujer con camisa marrón a rayas finas y bolsillo frontal, vista frontal" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0">
