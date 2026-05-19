@@ -24,9 +24,9 @@
         <h2 class="font-semibold mb-3">Datos personales</h2>
 
         <div class="space-y-3">
-          <input required placeholder="Nombre completo" class="input">
-          <input type="email" required placeholder="Email" class="input">
-          <input type="tel" required placeholder="Teléfono" class="input">
+          <input required name="nombreCompleto" placeholder="Nombre completo" class="input">
+          <input type="email" required name="email" placeholder="Email" class="input">
+          <input type="tel" required name="telefono" placeholder="Teléfono" class="input">
         </div>
       </section>
 
@@ -35,10 +35,10 @@
         <h2 class="font-semibold mb-3">Dirección</h2>
 
         <div class="space-y-3">
-          <input required placeholder="Dirección" class="input">
-          <input required placeholder="Ciudad" class="input">
-          <input required placeholder="Departamento" class="input">
-          <input required placeholder="Código postal" class="input">
+          <input required name="direccion" placeholder="Dirección" class="input">
+          <input required name="ciudad" placeholder="Ciudad" class="input">
+          <input required name="departamento" placeholder="Departamento" class="input">
+          <input required name="codigoPostal" placeholder="Código postal" class="input">
         </div>
       </section>
 
@@ -60,10 +60,10 @@
           </label>
 
           <div class="grid grid-cols-2 gap-3">
-            <input placeholder="Nombre del titular" class="input campo">
-            <input placeholder="Número de tarjeta (16 dígitos)" class="input campo" id="cardNumber" maxlength="16" inputmode="numeric">
-            <input placeholder="MM/AA" class="input campo" id="cardDate" maxlength="5" inputmode="numeric">
-            <input placeholder="CVV" class="input campo" id="cardCVV" maxlength="4" inputmode="numeric">
+            <input name="titularTarjeta" placeholder="Nombre del titular" class="input campo">
+            <input name="numeroTarjeta" placeholder="Número de tarjeta (16 dígitos)" class="input campo" id="cardNumber" maxlength="16" inputmode="numeric">
+            <input name="vencimientoTarjeta" placeholder="MM/AA" class="input campo" id="cardDate" maxlength="5" inputmode="numeric">
+            <input name="cvvTarjeta" placeholder="CVV" class="input campo" id="cardCVV" maxlength="4" inputmode="numeric">
           </div>
         </div>
 
@@ -84,7 +84,7 @@
             </div>
           </label>
 
-          <select class="input campo w-full" id="bankSelect">
+          <select class="input campo w-full" id="bankSelect" name="banco">
             <option value="">Selecciona tu banco</option>
             <option value="BROU">BROU</option>
             <option value="Santander">Santander</option>
@@ -193,12 +193,9 @@ function actualizar() {
       metodo = radio.value;
 
       m.classList.remove("opacity-50");
-      radio.disabled = false;
-
       campos.forEach(c => c.disabled = false);
     } else {
       m.classList.add("opacity-50");
-      radio.disabled = false;
       campos.forEach(c => c.disabled = true);
     }
   });
@@ -250,9 +247,22 @@ function validarTarjeta() {
     valido = false;
   }
 
-  if (!/^\d{2}\/\d{2}$/.test(date.value)) {
+  const dateMatch = date.value.match(/^(\d{2})\/(\d{2})$/);
+  if (!dateMatch) {
     date.classList.add("error");
     valido = false;
+  } else {
+    const mes = Number(dateMatch[1]);
+    const anio = Number(dateMatch[2]);
+
+    const ahora = new Date();
+    const mesActual = ahora.getMonth() + 1;
+    const anioActual = ahora.getFullYear() % 100;
+
+    if (mes < 1 || mes > 12 || anio < anioActual || (anio === anioActual && mes < mesActual)) {
+      date.classList.add("error");
+      valido = false;
+    }
   }
 
   return valido;
