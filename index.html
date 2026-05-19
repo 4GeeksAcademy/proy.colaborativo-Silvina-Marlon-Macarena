@@ -10,21 +10,6 @@
     <meta name="theme-color" content="#0f766e">
     <link rel="canonical" href="index.html">
 
-    <meta property="og:type" content="website">
-    <meta property="og:locale" content="es_ES">
-    <meta property="og:title" content="Loop | Moda urbana y esenciales diarios">
-    <meta property="og:description" content="Explora nuevos lanzamientos y más vendidos en Loop: calzado, camisas, pantalones y accesorios.">
-    <meta property="og:url" content="index.html">
-    <meta property="og:site_name" content="Loop">
-
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Loop | Moda urbana y esenciales diarios">
-    <meta name="twitter:description" content="Descubre las colecciones más recientes y los productos más vendidos de Loop.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
-
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -46,98 +31,43 @@
             }
         };
     </script>
-
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@graph": [
-                {
-                    "@type": "Organization",
-                    "name": "Loop",
-                    "url": "index.html",
-                    "contactPoint": {
-                        "@type": "ContactPoint",
-                        "contactType": "customer support",
-                        "email": "soporte@loop.com",
-                        "telephone": "+34 600 000 000"
-                    }
-                },
-                {
-                    "@type": "WebSite",
-                    "name": "Loop",
-                    "url": "index.html",
-                    "potentialAction": {
-                        "@type": "SearchAction",
-                        "target": "index.html?busqueda={search_term_string}",
-                        "query-input": "required name=search_term_string"
-                    }
-                },
-                {
-                    "@type": "WebPage",
-                    "name": "Inicio Loop",
-                    "url": "index.html",
-                    "description": "Página de inicio de Loop con colecciones destacadas y productos más vendidos.",
-                    "inLanguage": "es"
-                },
-                {
-                    "@type": "ItemList",
-                    "name": "Nuevos lanzamientos",
-                    "itemListElement": [
-                        {"@type": "ListItem", "position": 1, "name": "Pantalón Denim Nómada"},
-                        {"@type": "ListItem", "position": 2, "name": "Cinturón Hebilla"},
-                        {"@type": "ListItem", "position": 3, "name": "Camisa Cuadros Tierra"},
-                        {"@type": "ListItem", "position": 4, "name": "Mocasín Suede Oliva"}
-                    ]
-                },
-                {
-                    "@type": "ItemList",
-                    "name": "Más vendidos",
-                    "itemListElement": [
-                        {"@type": "ListItem", "position": 1, "name": "Classic Sneaker V2"},
-                        {"@type": "ListItem", "position": 2, "name": "Camisa Oxford Premium"},
-                        {"@type": "ListItem", "position": 3, "name": "Jeans Blue Core"},
-                        {"@type": "ListItem", "position": 4, "name": "Pack Accesorios Loop"}
-                    ]
-                }
-            ]
-        }
-    </script>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased">
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
 
     <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-        <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4">
-            <div class="flex items-center justify-between gap-3">
-                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
-                <button id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white p-2 text-slate-800 transition hover:border-loop-600 hover:text-loop-700 lg:hidden">
-                    <span class="sr-only">Abrir menú principal</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                </button>
-                <div id="mobile-menu" class="mt-3 hidden w-full flex-col gap-3 lg:mt-0 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-3">
-                <form action="index.html" method="get" role="search" class="w-full lg:w-56">
-                    <label for="busqueda" class="sr-only">Buscar productos</label>
-                    <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
-                        <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos" class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
-                    </div>
-                </form>
-                <button type="button" class="w-full rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700 lg:w-auto">Mi cuenta</button>
+        <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <!-- Buscador -->
+            <form action="index.html" method="get" role="search" class="flex-1 mx-4 max-w-md">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos" class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
                 </div>
+            </form>
+
+            <!-- Mi cuenta y carrito -->
+            <div class="flex items-center gap-3">
+                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white p-2 text-slate-800 transition hover:border-loop-600 hover:text-loop-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-9V5" />
+                    </svg>
+                </a>
             </div>
         </nav>
     </header>
 
     <main id="contenido">
+        <!-- Hero -->
         <section aria-labelledby="hero-title" class="relative h-[100svh] min-h-[560px]">
             <video class="absolute inset-0 h-full w-full object-cover" src="Recursos Gráficos/Hero/CampañaHero.mp4" autoplay muted loop playsinline aria-label="Video de campaña principal de Loop"></video>
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/25 to-transparent"></div>
             <div class="relative z-10 mx-auto flex h-full w-[92%] max-w-6xl items-start pt-24 md:pt-28">
                 <div>
                     <h1 id="hero-title" class="max-w-3xl font-bold leading-tight text-white">
-                        <span class="block text-4xl md:text-6xl" style="text-shadow: 1px 1px 0 rgba(15, 23, 42, 0.55), 2px 2px 0 rgba(15, 23, 42, 0.45), 3px 3px 0 rgba(15, 23, 42, 0.35), 4px 4px 0 rgba(15, 23, 42, 0.25), 10px 14px 24px rgba(0, 0, 0, 0.35);">Estilo urbano sin esfuerzo</span>
-                        <span class="mt-1 block text-2xl md:text-4xl" style="text-shadow: 1px 1px 0 rgba(15, 23, 42, 0.55), 2px 2px 0 rgba(15, 23, 42, 0.45), 3px 3px 0 rgba(15, 23, 42, 0.35), 4px 4px 0 rgba(15, 23, 42, 0.25), 10px 14px 24px rgba(0, 0, 0, 0.35);">Lo nuevo y lo esencial.</span>
+                        <span class="block text-4xl md:text-6xl" style="text-shadow: 1px 1px 0 rgba(15,23,42,0.55),2px 2px 0 rgba(15,23,42,0.45),3px 3px 0 rgba(15,23,42,0.35),4px 4px 0 rgba(15,23,42,0.25),10px 14px 24px rgba(0,0,0,0.35);">Estilo urbano sin esfuerzo</span>
+                        <span class="mt-1 block text-2xl md:text-4xl" style="text-shadow: 1px 1px 0 rgba(15,23,42,0.55),2px 2px 0 rgba(15,23,42,0.45),3px 3px 0 rgba(15,23,42,0.35),4px 4px 0 rgba(15,23,42,0.25),10px 14px 24px rgba(0,0,0,0.35);">Lo nuevo y lo esencial.</span>
                     </h1>
                     <p class="mt-4 max-w-xl text-base font-bold text-slate-100 md:text-lg">Calzado, camisas, pantalones y accesorios diseñados para fusionar tendencia y comodidad en tu día a día. ¡Explora la colección!</p>
                     <a href="Catalogo.html" class="mt-12 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-slate-900 transition hover:bg-slate-100">Ver colección</a>
@@ -145,15 +75,17 @@
             </div>
         </section>
 
+        <!-- Secciones de productos -->
         <section aria-labelledby="nuevos-lanzamientos" class="mx-auto grid min-h-screen w-[92%] max-w-6xl content-center py-8 md:py-10">
             <div class="mb-4 flex items-end justify-between">
                 <h2 id="nuevos-lanzamientos" class="rounded-sm bg-black px-3 py-1 text-2xl font-semibold text-white md:text-3xl">Nuevos lanzamientos</h2>
                 <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
             </div>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4" aria-label="Listado horizontal de nuevos lanzamientos">
+            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4">
+                <!-- Productos ejemplo -->
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Pantalones/Pantalón Denim Nómada.jpg" alt="Pantalón Denim Nómada en color índigo oscuro con costuras ocre y bolsillos de parche delanteros" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Pantalones/Pantalón Denim Nómada.jpg" alt="Pantalón Denim Nómada" class="h-64 w-full object-cover md:h-80">
                         <span class="absolute bottom-3 left-3 bg-black px-3 py-1 text-xs italic uppercase tracking-[0.18em] text-white">NEW IN</span>
                     </div>
                     <div class="mt-3 text-left">
@@ -163,7 +95,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Accesorios/Cinturón Hebilla.jpg" alt="Cinturón Hebilla en cuero marrón chocolate con hebilla circular dorada envejecida" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Accesorios/Cinturón Hebilla.jpg" alt="Cinturón Hebilla" class="h-64 w-full object-cover md:h-80">
                         <span class="absolute bottom-3 left-3 bg-black px-3 py-1 text-xs italic uppercase tracking-[0.18em] text-white">NEW IN</span>
                     </div>
                     <div class="mt-3 text-left">
@@ -173,7 +105,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Camisas/Camisa Cuadros Tierra.jpg" alt="Camisa Cuadros Tierra oversize con estampado de cuadros en tonos marrón, verde seco y negro" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Camisas/Camisa Cuadros Tierra.jpg" alt="Camisa Cuadros Tierra" class="h-64 w-full object-cover md:h-80">
                         <span class="absolute bottom-3 left-3 bg-black px-3 py-1 text-xs italic uppercase tracking-[0.18em] text-white">NEW IN</span>
                     </div>
                     <div class="mt-3 text-left">
@@ -183,7 +115,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Calzado/Mocasín Suede Oliva.jpg" alt="Mocasín Suede Oliva tipo penny loafer en ante marrón oliva con detalle festoneado en la puntera" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Calzado/Mocasín Suede Oliva.jpg" alt="Mocasín Suede Oliva" class="h-64 w-full object-cover md:h-80">
                         <span class="absolute bottom-3 left-3 bg-black px-3 py-1 text-xs italic uppercase tracking-[0.18em] text-white">NEW IN</span>
                     </div>
                     <div class="mt-3 text-left">
@@ -194,15 +126,17 @@
             </div>
         </section>
 
+        <!-- Más vendidos -->
         <section aria-labelledby="mas-vendidos" class="mx-auto grid min-h-screen w-[92%] max-w-6xl content-center py-8 md:py-10">
             <div class="mb-4 flex items-end justify-between">
                 <h2 id="mas-vendidos" class="rounded-sm bg-black px-3 py-1 text-2xl font-semibold text-white md:text-3xl">Más vendidos</h2>
                 <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
             </div>
-            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4" aria-label="Listado horizontal de más vendidos">
+            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4">
+                <!-- Productos ejemplo -->
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Calzado/Mocasín Suede Oliva.jpg" alt="Classic Sneaker V2 en color neutro para uso diario" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Calzado/Mocasín Suede Oliva.jpg" alt="Classic Sneaker V2" class="h-64 w-full object-cover md:h-80">
                     </div>
                     <div class="mt-3 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Classic Sneaker V2</h3>
@@ -211,7 +145,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Camisas/Camisa Cuadros Tierra.jpg" alt="Camisa Oxford Premium para oficina y eventos" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Camisas/Camisa Oxford Premium.jpg" alt="Camisa Oxford Premium" class="h-64 w-full object-cover md:h-80">
                     </div>
                     <div class="mt-3 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Camisa Oxford Premium</h3>
@@ -220,7 +154,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Pantalones/Pantalón Denim Nómada.jpg" alt="Jeans Blue Core clásico de gran ajuste" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Pantalones/Pantalón Denim Nómada.jpg" alt="Jeans Blue Core" class="h-64 w-full object-cover md:h-80">
                     </div>
                     <div class="mt-3 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Jeans Blue Core</h3>
@@ -229,7 +163,7 @@
                 </article>
                 <article class="min-w-0">
                     <div class="relative">
-                        <img src="Recursos Gráficos/Accesorios/Pack Accesorios Loop.jpg" alt="Pack Accesorios Loop con basicos para cada look" class="h-64 w-full object-cover md:h-80">
+                        <img src="Recursos Gráficos/Accesorios/Pack Accesorios Loop.jpg" alt="Pack Accesorios Loop" class="h-64 w-full object-cover md:h-80">
                     </div>
                     <div class="mt-3 text-left">
                         <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Pack Accesorios Loop</h3>
@@ -240,53 +174,11 @@
         </section>
     </main>
 
-    <footer class="relative mt-8 overflow-hidden border-t border-slate-300/70 bg-gradient-to-br from-slate-600 via-slate-500 to-slate-600 text-slate-100">
-        <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.16),transparent_45%),radial-gradient(circle_at_80%_10%,rgba(255,255,255,0.12),transparent_38%)]"></div>
-        <div class="relative mx-auto w-[92%] max-w-6xl py-12 md:py-14">
-            <div class="grid gap-5 md:grid-cols-3">
-                <section aria-labelledby="footer-categorias" class="rounded-2xl border border-white/35 bg-white/10 p-5 shadow-md backdrop-blur-sm">
-                    <h2 id="footer-categorias" class="mb-4 inline-flex rounded-full bg-black px-4 py-1 text-lg font-semibold text-white">Categorías</h2>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Calzado</a></li>
-                        <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Camisas</a></li>
-                        <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Pantalones</a></li>
-                        <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Accesorios</a></li>
-                    </ul>
-                </section>
-
-                <nav aria-labelledby="footer-legal" class="rounded-2xl border border-white/35 bg-white/10 p-5 shadow-md backdrop-blur-sm">
-                    <h2 id="footer-legal" class="mb-4 inline-flex rounded-full bg-black px-4 py-1 text-lg font-semibold text-white">Legal</h2>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Términos y condiciones</a></li>
-                        <li><a href="#" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Política de privacidad</a></li>
-                        <li><a href="#" class="inline-block rounded-full bg-white/65 px-3 py-1 text-black transition hover:bg-white hover:text-slate-900">Sobre la marca</a></li>
-                    </ul>
-                </nav>
-
-                <section aria-labelledby="footer-contacto" class="rounded-2xl border border-white/35 bg-white/10 p-5 shadow-md backdrop-blur-sm">
-                    <h2 id="footer-contacto" class="mb-4 inline-flex rounded-full bg-black px-4 py-1 text-lg font-semibold text-white">Contacto</h2>
-                    <address class="space-y-2 text-sm not-italic">
-                        <p class="inline-block rounded-full bg-white/65 px-3 py-1 text-black">soporte@loop.com</p>
-                        <p class="inline-block rounded-full bg-white/65 px-3 py-1 text-black">+34 600 000 000</p>
-                        <p class="inline-block rounded-full bg-white/65 px-3 py-1 text-black">Lun a Vie 9:00 - 18:00</p>
-                    </address>
-                </section>
-            </div>
+    <footer class="relative mt-8 overflow-hidden border-t border-slate-300/70 bg-gradient-to-br from-slate-600 via-slate-500 to-slate-600 text-slate-100 py-12">
+        <div class="mx-auto w-[92%] max-w-6xl text-center">
+            <p>© 2026 Loop. Todos los derechos reservados.</p>
         </div>
-        <p class="relative border-t border-white/25 bg-black/20 py-4 text-center text-xs text-white/85">© 2026 Loop. Todos los derechos reservados.</p>
     </footer>
 
-    <script>
-        const menuToggleButton = document.getElementById("menu-toggle");
-        const mobileMenu = document.getElementById("mobile-menu");
-
-        if (menuToggleButton && mobileMenu) {
-            menuToggleButton.addEventListener("click", () => {
-                const isExpanded = menuToggleButton.getAttribute("aria-expanded") === "true";
-                menuToggleButton.setAttribute("aria-expanded", String(!isExpanded));
-                mobileMenu.classList.toggle("hidden");
-            });
-        }
-    </script>
 </body>
 </html>
