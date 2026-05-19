@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Product",
+                "name": "Vista de producto Loop",
+                "url": "Vista-de-producto.html",
+                "description": "Detalle de producto Loop.",
+                "inLanguage": "es"
+            }
+            </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Producto | Loop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
+
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                </div>
+            </form>
+
+            <div class="flex items-center gap-2">
+                <a href="Catalogo.html" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
+                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido" class="mx-auto w-[92%] max-w-5xl py-6 md:py-8">
+        <a href="Catalogo.html#product-list" class="mb-6 inline-flex rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Volver al listado</a>
+
+        <article id="product-view" class="space-y-8">
+            <section class="relative rounded-2xl border border-slate-300 bg-white p-4 shadow-sm md:p-6">
+                <button id="prev-product" type="button" aria-label="Producto anterior" class="absolute left-2 top-1/2 z-20 -translate-y-1/2 rounded-full border-2 border-red-600 bg-red-500 px-3 py-2 text-2xl font-bold text-white shadow-sm transition hover:bg-red-600 hover:border-red-800 md:-left-6 md:px-4 md:py-3">‹</button>
+                <button id="next-product" type="button" aria-label="Producto siguiente" class="absolute right-2 top-1/2 z-20 -translate-y-1/2 rounded-full border-2 border-red-600 bg-red-500 px-3 py-2 text-2xl font-bold text-white shadow-sm transition hover:bg-red-600 hover:border-red-800 md:-right-6 md:px-4 md:py-3">›</button>
+                <div class="grid gap-6 md:grid-cols-2 md:items-start">
+                    <figure class="group relative flex h-[340px] items-center justify-center overflow-hidden rounded-xl bg-slate-200 md:h-[420px]">
+                        <button id="favorite-toggle" type="button" aria-label="Agregar a favoritos" aria-pressed="false" class="absolute right-2 top-2 z-20 flex h-9 w-9 items-center justify-center rounded-full border-2 border-red-200 bg-white/95 text-xl leading-none text-red-500 shadow-sm transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-300">♡</button>
+                        <img id="product-image-a" src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada vista frontal" class="absolute inset-0 h-full w-full object-contain transition-opacity duration-300 group-hover:opacity-0">
+                        <img id="product-image-b" src="Recursos Gráficos/Camisas/Camisa1-b.jpg" alt="Camisa Marrón Rayada vista trasera" class="absolute inset-0 h-full w-full object-contain opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                    </figure>
+
+                    <section>
+                        <h1 id="product-name" class="text-3xl font-bold text-slate-900">Camisa Marrón Rayada</h1>
+                        <p id="product-ref" class="mt-1 text-base text-slate-500">Ref: CAM-001</p>
+                        <p id="product-price" class="mt-2 text-4xl font-bold text-slate-900">$2290</p>
+
+                        <div class="mt-5">
+                            <label for="talla-producto" class="mb-2 block text-xl font-semibold text-slate-900">Talla</label>
+                            <select id="talla-producto" class="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700"></select>
+                        </div>
+
+                        <div class="mt-5">
+                            <label for="cantidad-producto" class="mb-2 block text-xl font-semibold text-slate-900">Cantidad</label>
+                            <input id="cantidad-producto" type="number" min="1" value="1" class="w-20 rounded-lg border border-slate-300 px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700">
+                        </div>
+
+                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-red-500 border-2 border-red-600 px-5 py-3 text-xl font-semibold text-white transition hover:bg-red-600 hover:border-red-800">Agregar al carrito</a>
+                    </section>
+                </div>
+            </section>
+
+            <section class="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm md:p-7">
+                <h2 class="mb-4 text-3xl font-semibold text-slate-900">Descripción</h2>
+                <ul class="list-disc space-y-2 pl-6 text-xl text-slate-800">
+                    <li><span class="font-semibold">Materiales:</span> <span id="product-material">Algodón ligero</span></li>
+                    <li><span class="font-semibold">Uso recomendado:</span> <span id="product-use">Oficina y salidas casuales</span></li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-8 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
+                <address class="space-y-2 text-sm not-italic text-slate-300">
+                    <p>soporte@loop.com</p>
+                    <p>+34 600 000 000</p>
+                    <p>Lun a Vie 9:00 - 18:00</p>
+                </address>
+            </section>
+        </div>
+        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        const productos = {
+            'prod-camisa1': { name: 'Camisa Marrón Rayada', ref: 'CAM-001', price: '$2290', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Camisas/Camisa1-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa1-b.jpg', material: 'Algodón ligero', use: 'Oficina y salidas casuales' },
+            'prod-camisa2': { name: 'Camisa de Cuadros Marrones', ref: 'CAM-002', price: '$2390', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Camisas/Camisa2-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa2-b.jpg', material: 'Algodón y lino', use: 'Uso diario y looks urbanos' },
+            'prod-camisa3': { name: 'Blusa Celeste Plisada', ref: 'CAM-003', price: '$2490', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Camisas/Camisa3-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa3-b.jpg', material: 'Tejido liviano plisado', use: 'Salidas casuales y oficina' },
+            'prod-camisa4': { name: 'Camisa Oversize Negra con Brillo', ref: 'CAM-004', price: '$2590', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Camisas/camisa4-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa4-b.webp', material: 'Poliéster suave', use: 'Eventos y noche urbana' },
+            'prod-camisa5': { name: 'Camisa con Estampado', ref: 'CAM-005', price: '$2690', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Camisas/camisa5-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa5-b.webp', material: 'Algodón estampado', use: 'Look casual y creativo' },
+            'prod-pantalon1': { name: 'Pantalón Marrón Recto', ref: 'PAN-001', price: '$2790', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Pantalones/Pantalon1-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon1-b.jpg', material: 'Gabardina de algodón', use: 'Trabajo y salidas casuales' },
+            'prod-pantalon2': { name: 'Pantalón Estampado Azul', ref: 'PAN-002', price: '$2890', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/Pantalon2-a.jpg', imageB: 'Recursos Gráficos/Pantalones/pantalon2-b.jpg', material: 'Tela fresca estampada', use: 'Verano y fines de semana' },
+            'prod-pantalon3': { name: 'Jeans Anchos Oscuros', ref: 'PAN-003', price: '$2990', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Pantalones/Pantalon3-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon3-b.jpg', material: 'Denim resistente', use: 'Uso diario urbano' },
+            'prod-pantalon4': { name: 'Pantalón Ancho Azul Medio', ref: 'PAN-004', price: '$3090', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/pantalon4-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon4-b.webp', material: 'Mezcla de algodón y elastano', use: 'Outfits relajados' },
+            'prod-pantalon5': { name: 'Pantalón Marfil', ref: 'PAN-005', price: '$3190', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Pantalones/pantalon5-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon5-b.webp', material: 'Tela de caída suave', use: 'Oficina y eventos informales' },
+            'prod-accesorio1': { name: 'Caravana dorada', ref: 'ACC-001', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio1-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio1-b.webp', material: 'Aleación dorada', use: 'Complemento para ocasión especial' },
+            'prod-accesorio2': { name: 'Brazalete Dorado', ref: 'ACC-002', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio2-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio2-b.webp', material: 'Metal pulido', use: 'Looks elegantes y casuales' },
+            'prod-accesorio3': { name: 'Cinturón Negro', ref: 'ACC-003', price: '$799', sizes: ['Única', 'L', 'XL'], imageA: 'Recursos Gráficos/Accesorios/accesorio3-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio3-b.webp', material: 'Cuero sintético', use: 'Ajuste para jeans y pantalones' },
+            'prod-accesorio4': { name: 'Bandolera Negra', ref: 'ACC-004', price: '$1599', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio4-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio4-b.webp', material: 'Textil reforzado', use: 'Traslado diario y urbano' },
+            'prod-accesorio5': { name: 'Bufanda tejida', ref: 'ACC-005', price: '$999', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio5-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio5-b.webp', material: 'Tejido acrílico', use: 'Abrigo en clima fresco' },
+            'prod-calzado1': { name: 'Bota Texana Negra', ref: 'CAL-001', price: '$3790', sizes: ['35', '36', '37'], imageA: 'Recursos Gráficos/Calzado/calzado1-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado1-b.webp', material: 'Cuero sintético', use: 'Look urbano y western' },
+            'prod-calzado2': { name: 'Zapato Derby Marrón', ref: 'CAL-002', price: '$3990', sizes: ['36', '37', '38'], imageA: 'Recursos Gráficos/Calzado/calzado2-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado2-b.webp', material: 'Acabado tipo cuero', use: 'Oficina y ocasiones formales' },
+            'prod-calzado3': { name: 'Botas de Cuero Negras', ref: 'CAL-003', price: '$4290', sizes: ['38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado3-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado3-b.webp', material: 'Cuero y suela firme', use: 'Uso diario de alto tránsito' },
+            'prod-calzado4': { name: 'Zapatillas Deportivas', ref: 'CAL-004', price: '$4590', sizes: ['35', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado4-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado4-b.webp', material: 'Malla transpirable', use: 'Actividad urbana y fitness' },
+            'prod-calzado5': { name: 'Zapatilla Urbana Marrón', ref: 'CAL-005', price: '$4990', sizes: ['37', '38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado5-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado5-b.webp', material: 'Textil premium', use: 'Recorridos urbanos diarios' }
+        };
+
+        const orderedProductIds = Object.keys(productos);
+
+        function resolveProductIdFromHash() {
+            const hash = window.location.hash || '#prod-camisa1';
+            const id = hash.replace('#', '');
+            return productos[id] ? id : 'prod-camisa1';
+        }
+
+        let currentProductId = resolveProductIdFromHash();
+        let currentProduct = productos[currentProductId];
+
+        const productName = document.getElementById('product-name');
+        const productRef = document.getElementById('product-ref');
+        const productPrice = document.getElementById('product-price');
+        const productImageA = document.getElementById('product-image-a');
+        const productImageB = document.getElementById('product-image-b');
+        const productMaterial = document.getElementById('product-material');
+        const productUse = document.getElementById('product-use');
+        const tallaSelect = document.getElementById('talla-producto');
+        const cantidadInput = document.getElementById('cantidad-producto');
+        const addToCart = document.getElementById('add-to-cart');
+        const prevProductBtn = document.getElementById('prev-product');
+        const nextProductBtn = document.getElementById('next-product');
+        const favoriteToggleBtn = document.getElementById('favorite-toggle');
+        const FAVORITES_KEY = 'loop_favorites';
+
+        function getFavorites() {
+            try {
+                const raw = localStorage.getItem(FAVORITES_KEY);
+                return new Set(raw ? JSON.parse(raw) : []);
+            } catch (error) {
+                return new Set();
+            }
+        }
+
+        function saveFavorites(favoritesSet) {
+            localStorage.setItem(FAVORITES_KEY, JSON.stringify(Array.from(favoritesSet)));
+        }
+
+        function updateFavoriteButtonState(button, isFavorite) {
+            button.setAttribute('aria-pressed', String(isFavorite));
+            button.setAttribute('aria-label', isFavorite ? 'Quitar de favoritos' : 'Agregar a favoritos');
+            button.textContent = isFavorite ? '♥' : '♡';
+            button.classList.toggle('bg-red-500', isFavorite);
+            button.classList.toggle('text-white', isFavorite);
+            button.classList.toggle('border-red-600', isFavorite);
+            button.classList.toggle('bg-white/95', !isFavorite);
+            button.classList.toggle('text-red-500', !isFavorite);
+            button.classList.toggle('border-red-200', !isFavorite);
+        }
+
+        function getAllSizesByProductId(id) {
+            if (id.startsWith('prod-calzado')) {
+                return ['35', '36', '37', '38', '39', '40'];
+            }
+
+            if (id.startsWith('prod-accesorio')) {
+                return ['Única'];
+            }
+
+            return ['S', 'M', 'L', 'XL'];
+        }
+
+        function renderProduct(productId, data) {
+            currentProductId = productId;
+            currentProduct = data;
+
+            productName.textContent = data.name;
+            productRef.textContent = `Ref: ${data.ref}`;
+            productPrice.textContent = data.price;
+            productImageA.src = data.imageA;
+            productImageA.alt = `${data.name} vista frontal`;
+            productImageB.src = data.imageB;
+            productImageB.alt = `${data.name} vista trasera`;
+            productMaterial.textContent = data.material;
+            productUse.textContent = data.use;
+
+            const allSizes = getAllSizesByProductId(productId);
+            const availableSizes = new Set(data.sizes);
+
+            tallaSelect.innerHTML = allSizes
+                .map((size) => {
+                    if (availableSizes.has(size)) {
+                        return `<option value="${size}">${size}</option>`;
+                    }
+
+                    return `<option value="${size}" disabled style="color:#94a3b8;">${size} - No disponible</option>`;
+                })
+                .join('');
+
+            tallaSelect.value = data.sizes[0] || '';
+
+            const favorites = getFavorites();
+            updateFavoriteButtonState(favoriteToggleBtn, favorites.has(productId));
+
+            document.title = `${data.name} | Loop`;
+        }
+
+        function getAdjacentProductId(direction) {
+            const currentIndex = orderedProductIds.indexOf(currentProductId);
+            const nextIndex = (currentIndex + direction + orderedProductIds.length) % orderedProductIds.length;
+            return orderedProductIds[nextIndex];
+        }
+
+        function navigateToProduct(direction) {
+            const targetId = getAdjacentProductId(direction);
+            window.location.hash = targetId;
+            renderProduct(targetId, productos[targetId]);
+        }
+
+        function getCart() {
+            try {
+                const raw = localStorage.getItem('loop_cart');
+                return raw ? JSON.parse(raw) : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveCart(items) {
+            localStorage.setItem('loop_cart', JSON.stringify(items));
+        }
+
+        addToCart.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const quantity = Math.max(1, Number(cantidadInput.value) || 1);
+            const selectedSize = tallaSelect.value || 'N/A';
+            const cart = getCart();
+
+            const existingIndex = cart.findIndex((item) => item.id === currentProductId && item.size === selectedSize);
+
+            if (existingIndex >= 0) {
+                cart[existingIndex].qty += quantity;
+            } else {
+                cart.push({
+                    id: currentProductId,
+                    name: currentProduct.name,
+                    ref: currentProduct.ref,
+                    price: currentProduct.price,
+                    size: selectedSize,
+                    qty: quantity,
+                    image: currentProduct.imageA
+                });
+            }
+
+            saveCart(cart);
+            window.location.href = 'Carrito.html';
+        });
+
+        prevProductBtn.addEventListener('click', () => navigateToProduct(-1));
+        nextProductBtn.addEventListener('click', () => navigateToProduct(1));
+        favoriteToggleBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            const favorites = getFavorites();
+            const isFavorite = favorites.has(currentProductId);
+
+            if (isFavorite) {
+                favorites.delete(currentProductId);
+            } else {
+                favorites.add(currentProductId);
+            }
+
+            saveFavorites(favorites);
+            updateFavoriteButtonState(favoriteToggleBtn, !isFavorite);
+        });
+
+        window.addEventListener('hashchange', () => {
+            const nextId = resolveProductIdFromHash();
+            renderProduct(nextId, productos[nextId]);
+        });
+
+        renderProduct(currentProductId, currentProduct);
+    </script>
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5491123456789" target="_blank" rel="noopener noreferrer" aria-label="Chatea por WhatsApp"
+       class="fixed z-50 bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-colors hover:bg-[#20bd5a] focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+            <path fill="currentColor" d="M20.52 3.48A11.88 11.88 0 0 0 12.03 0C5.41 0 .02 5.39.02 12c0 2.12.56 4.19 1.62 6L0 24l6.17-1.62A11.95 11.95 0 0 0 12.03 24c6.62 0 12-5.39 12-12 0-3.21-1.25-6.23-3.51-8.52Zm-8.49 18.5a9.9 9.9 0 0 1-5.06-1.39l-.36-.21-3.67.96.98-3.57-.24-.37a9.96 9.96 0 1 1 8.35 4.58Zm5.45-7.45c-.3-.15-1.75-.86-2.02-.96-.27-.1-.46-.15-.65.15-.2.3-.74.96-.9 1.16-.17.2-.34.23-.64.08-.3-.15-1.27-.47-2.42-1.5a8.91 8.91 0 0 1-1.64-2.03c-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.65-1.58-.9-2.17-.23-.55-.47-.48-.64-.49h-.55c-.2 0-.53.08-.81.38-.28.3-1.07 1.04-1.07 2.53s1.1 2.93 1.25 3.14c.15.2 2.16 3.3 5.23 4.62.73.31 1.3.5 1.74.64.73.23 1.4.2 1.93.12.59-.09 1.75-.72 2-1.41.25-.69.25-1.28.18-1.41-.08-.12-.27-.2-.57-.35Z" />
+        </svg>
+    </a>
+</body>
+</html>
