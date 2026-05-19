@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "CheckoutPage",
+                "name": "Formulario de pago Loop",
+                "url": "Formulario-de-pago.html",
+                "description": "Formulario de pago de Loop.",
+                "inLanguage": "es"
+            }
+            </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Pago | Loop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
+            }
+        };
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
+
+    <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
+        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                </div>
+            </form>
+
+            <div class="flex items-center gap-2">
+                <a href="Catalogo.html" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
+                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-8 pb-10 md:py-10 md:pb-12">
+        <h1 class="mb-6 text-3xl font-bold tracking-tight">Formulario de pago</h1>
+
+        <form id="payment-form" class="max-w-2xl space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div>
+                <label for="name" class="mb-2 block text-sm font-medium text-slate-700">Nombre</label>
+                <input type="text" id="name" name="name" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-loop-600">
+            </div>
+
+            <div>
+                <label for="card" class="mb-2 block text-sm font-medium text-slate-700">Tarjeta</label>
+                <input type="text" id="card" name="card" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-loop-600">
+            </div>
+
+            <div class="grid gap-4 sm:grid-cols-2">
+                <div>
+                    <label for="expiry" class="mb-2 block text-sm font-medium text-slate-700">Vencimiento</label>
+                    <input type="text" id="expiry" name="expiry" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-loop-600">
+                </div>
+                <div>
+                    <label for="cvv" class="mb-2 block text-sm font-medium text-slate-700">CVV</label>
+                    <input type="text" id="cvv" name="cvv" required class="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-loop-600">
+                </div>
+            </div>
+
+            <button type="submit" class="inline-flex rounded-full border border-loop-700 bg-loop-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-loop-600">Pagar</button>
+        </form>
+    </main>
+
+    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-8 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
+                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
+                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
+                <address class="space-y-2 text-sm not-italic text-slate-300">
+                    <p>soporte@loop.com</p>
+                    <p>+34 600 000 000</p>
+                    <p>Lun a Vie 9:00 - 18:00</p>
+                </address>
+            </section>
+        </div>
+        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
+    </footer>
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/5491123456789" target="_blank" rel="noopener noreferrer" aria-label="Chatea por WhatsApp"
+       class="fixed z-50 bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-colors hover:bg-[#20bd5a] focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+            <path fill="currentColor" d="M20.52 3.48A11.88 11.88 0 0 0 12.03 0C5.41 0 .02 5.39.02 12c0 2.12.56 4.19 1.62 6L0 24l6.17-1.62A11.95 11.95 0 0 0 12.03 24c6.62 0 12-5.39 12-12 0-3.21-1.25-6.23-3.51-8.52Zm-8.49 18.5a9.9 9.9 0 0 1-5.06-1.39l-.36-.21-3.67.96.98-3.57-.24-.37a9.96 9.96 0 1 1 8.35 4.58Zm5.45-7.45c-.3-.15-1.75-.86-2.02-.96-.27-.1-.46-.15-.65.15-.2.3-.74.96-.9 1.16-.17.2-.34.23-.64.08-.3-.15-1.27-.47-2.42-1.5a8.91 8.91 0 0 1-1.64-2.03c-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.65-1.58-.9-2.17-.23-.55-.47-.48-.64-.49h-.55c-.2 0-.53.08-.81.38-.28.3-1.07 1.04-1.07 2.53s1.1 2.93 1.25 3.14c.15.2 2.16 3.3 5.23 4.62.73.31 1.3.5 1.74.64.73.23 1.4.2 1.93.12.59-.09 1.75-.72 2-1.41.25-.69.25-1.28.18-1.41-.08-.12-.27-.2-.57-.35Z" />
+        </svg>
+    </a>
+</body>
+</html>
