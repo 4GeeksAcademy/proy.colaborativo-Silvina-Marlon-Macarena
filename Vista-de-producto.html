@@ -15,6 +15,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vista de Producto | Loop</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="navbar-cart-total.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -40,19 +41,32 @@
     <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
 
     <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-        <nav aria-label="Barra principal" class="mx-auto flex w-[92%] max-w-6xl flex-col gap-3 py-4 md:flex-row md:items-center md:justify-between">
+        <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
 
-            <form action="index.html" method="get" role="search" class="w-full md:max-w-xl">
+            <form action="index.html" method="get" role="search" class="flex-1 mx-4 max-w-md">
                 <label for="busqueda" class="sr-only">Buscar productos</label>
-                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
-                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos, marcas y más..." class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                <div class="flex items-center gap-2 border-b border-slate-900 px-1 pb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-3.5-3.5"></path>
+                    </svg>
+                    <input id="busqueda" name="busqueda" type="search" placeholder="BUSCAR" class="w-full border-none bg-transparent text-xs font-medium uppercase tracking-[0.08em] text-slate-900 outline-none placeholder:text-slate-900" autocomplete="off">
                 </div>
             </form>
 
-            <div class="flex items-center gap-2">
-                <a href="Catalogo.html" class="rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Catálogo</a>
-                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
+            <div class="flex items-center gap-4 text-slate-900">
+                <button type="button" aria-label="Mi cuenta" class="inline-flex items-center transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.12a7.5 7.5 0 0 1 15 0" />
+                    </svg>
+                </button>
+                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center gap-2 transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12l-1 11H7l-1-11Zm3-2.25A3 3 0 0 1 12 2.25a3 3 0 0 1 3 3" />
+                    </svg>
+                    <span class="text-sm" data-cart-total>UYU 0,00</span>
+                </a>
             </div>
         </nav>
     </header>
@@ -101,37 +115,56 @@
         </article>
     </main>
 
-    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
-        <div class="mx-auto grid w-[92%] max-w-6xl gap-8 py-8 md:grid-cols-3">
+    <footer class="mt-8 bg-black text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-10 py-12 md:grid-cols-3">
             <section aria-labelledby="footer-categorias">
-                <h2 id="footer-categorias" class="mb-3 text-base font-semibold text-white">Categorías</h2>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Calzado</a></li>
-                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Camisas</a></li>
-                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Pantalones</a></li>
-                    <li><a href="Catalogo.html" class="hover:text-cyan-300">Accesorios</a></li>
+                <h2 id="footer-categorias" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Categorías</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="Catalogo.html?categoria=calzado" class="transition hover:text-white">Calzado</a></li>
+                    <li><a href="Catalogo.html?categoria=camisas" class="transition hover:text-white">Camisas</a></li>
+                    <li><a href="Catalogo.html?categoria=pantalones" class="transition hover:text-white">Pantalones</a></li>
+                    <li><a href="Catalogo.html?categoria=accesorios" class="transition hover:text-white">Accesorios</a></li>
                 </ul>
             </section>
 
             <nav aria-labelledby="footer-legal">
-                <h2 id="footer-legal" class="mb-3 text-base font-semibold text-white">Legal</h2>
-                <ul class="space-y-2 text-sm">
-                    <li><a href="#" class="hover:text-cyan-300">Términos y condiciones</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Política de privacidad</a></li>
-                    <li><a href="#" class="hover:text-cyan-300">Sobre la marca</a></li>
+                <h2 id="footer-legal" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Legal</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="#" class="transition hover:text-white">Términos y condiciones</a></li>
+                    <li><a href="#" class="transition hover:text-white">Política de privacidad</a></li>
+                    <li><a href="#" class="transition hover:text-white">Sobre la marca</a></li>
                 </ul>
             </nav>
 
             <section aria-labelledby="footer-contacto">
-                <h2 id="footer-contacto" class="mb-3 text-base font-semibold text-white">Contacto</h2>
-                <address class="space-y-2 text-sm not-italic text-slate-300">
-                    <p>soporte@loop.com</p>
-                    <p>+34 600 000 000</p>
-                    <p>Lun a Vie 9:00 - 18:00</p>
+                <h2 id="footer-contacto" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Contacto</h2>
+                <address class="space-y-3 text-sm not-italic text-slate-300">
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5v13.5H3.75z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 6 7.5 6 7.5-6" />
+                        </svg>
+                        <span>soporte@loop.com</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.294a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.294-.97c.363-.272.53-.738.417-1.173L7.963 3.102A1.125 1.125 0 0 0 6.872 2.25H5.5A2.25 2.25 0 0 0 3.25 4.5v2.25Z" />
+                        </svg>
+                        <span>+34 600 000 000</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5" />
+                        </svg>
+                        <span>Lun a Vie 9:00 - 18:00</span>
+                    </p>
                 </address>
             </section>
         </div>
-        <p class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">© 2026 Loop. Todos los derechos reservados.</p>
+        <div class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">
+            <p>© 2026 Loop. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script>
@@ -279,6 +312,10 @@
 
         function saveCart(items) {
             localStorage.setItem('loop_cart', JSON.stringify(items));
+            if (typeof window.updateNavbarCartTotal === 'function') {
+                window.updateNavbarCartTotal();
+            }
+            window.dispatchEvent(new Event('loop-cart-updated'));
         }
 
         addToCart.addEventListener('click', (event) => {

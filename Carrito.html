@@ -1,11 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ShoppingCartPage",
+        "name": "Carrito de compras Loop",
+        "url": "Carrito.html",
+        "description": "Carrito de compras de Loop.",
+        "inLanguage": "es"
+    }
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito | Loop</title>
-    <meta name="description" content="Carrito de compras de Loop con productos de ejemplo.">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="navbar-cart-total.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -28,96 +38,286 @@
     </script>
 </head>
 <body class="bg-slate-50 text-slate-900 antialiased">
+    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
 
     <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
         <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4 flex items-center justify-between">
             <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
-            <!-- Buscador -->
+
             <form action="index.html" method="get" role="search" class="flex-1 mx-4 max-w-md">
                 <label for="busqueda" class="sr-only">Buscar productos</label>
-                <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
-                    <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos" class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
+                <div class="flex items-center gap-2 border-b border-slate-900 px-1 pb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-3.5-3.5"></path>
+                    </svg>
+                    <input id="busqueda" name="busqueda" type="search" placeholder="BUSCAR" class="w-full border-none bg-transparent text-xs font-medium uppercase tracking-[0.08em] text-slate-900 outline-none placeholder:text-slate-900" autocomplete="off">
                 </div>
             </form>
-            <!-- Mi cuenta y carrito -->
-            <div class="flex items-center gap-3">
-                <button type="button" class="rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700">Mi cuenta</button>
-                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white p-2 text-slate-800 transition hover:border-loop-600 hover:text-loop-700">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2 9m13-9l2 9m-5-9V5" />
+
+            <div class="flex items-center gap-4 text-slate-900">
+                <button type="button" aria-label="Mi cuenta" class="inline-flex items-center transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.12a7.5 7.5 0 0 1 15 0" />
                     </svg>
+                </button>
+                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center gap-2 transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12l-1 11H7l-1-11Zm3-2.25A3 3 0 0 1 12 2.25a3 3 0 0 1 3 3" />
+                    </svg>
+                    <span class="text-sm" data-cart-total>UYU 0,00</span>
                 </a>
             </div>
         </nav>
     </header>
 
-    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-8 md:py-10">
-        <h1 class="mb-6 text-3xl font-bold tracking-tight">Carrito de compras</h1>
+    <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-8 pb-10 md:py-10 md:pb-12">
+        <section class="mx-auto max-w-4xl border border-slate-300 bg-[#f3f3f3] p-4 md:p-6">
+            <h1 class="mb-4 bg-black px-3 py-2 text-sm font-bold uppercase tracking-wide text-white">Detalle del pedido</h1>
 
-        <!-- Lista de productos en el carrito -->
-        <ul id="cart-list" class="space-y-5 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"></ul>
+            <section id="cart-items" class="bg-white px-3 py-4 md:px-4">
+                <p class="text-slate-600">Aun no hay productos en el carrito.</p>
+            </section>
 
-        <!-- Resumen de totales -->
-        <div class="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-right space-y-2">
-            <p>Subtotal: <strong id="subtotal">UYU 0,00</strong></p>
-            <p>Impuestos (22%): <strong id="taxes">UYU 0,00</strong></p>
-            <p class="text-xl font-bold">Total: <strong id="total">UYU 0,00</strong></p>
-            <a href="Formulario-de-pago.html" class="mt-4 inline-flex w-full justify-center rounded-full border border-loop-700 bg-loop-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-loop-600 md:w-auto">Comprar</a>
-        </div>
+            <section class="mt-5 border-t border-slate-300 pt-4 text-sm text-slate-800">
+                <p>Te enviamos las bolsas que quieras para armar tus regalos.</p>
+                <ol class="mt-3 list-decimal space-y-1 pl-5">
+                    <li>Selecciona "Agregar bolsa".</li>
+                    <li>Edita el numero que aparece en - 1 +.</li>
+                    <li>Indica el numero de bolsa que necesitas.</li>
+                </ol>
+                <p class="mt-2">Incluimos tus tickets de cambio.</p>
+                <p class="mt-1 text-xs text-slate-500">*El diseno puede variar segun stock.</p>
+
+                <div class="mt-4 flex justify-end">
+                    <button type="button" class="bg-slate-500 px-5 py-2 text-xs font-bold uppercase text-white transition hover:bg-slate-600">Agregar bolsa</button>
+                </div>
+            </section>
+
+            <div class="mt-5 flex items-center justify-between border-t border-slate-300 pt-4 text-lg font-bold text-slate-900">
+                <p>Importe total</p>
+                <p id="order-total">UYU 0,00</p>
+            </div>
+        </section>
     </main>
 
-    <footer class="border-t border-slate-200 bg-slate-900 text-slate-200 py-6 text-center text-sm">
-        © 2026 Loop. Todos los derechos reservados.
+    <footer class="mt-8 bg-black text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-10 py-12 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Categorías</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="Catalogo.html?categoria=calzado" class="transition hover:text-white">Calzado</a></li>
+                    <li><a href="Catalogo.html?categoria=camisas" class="transition hover:text-white">Camisas</a></li>
+                    <li><a href="Catalogo.html?categoria=pantalones" class="transition hover:text-white">Pantalones</a></li>
+                    <li><a href="Catalogo.html?categoria=accesorios" class="transition hover:text-white">Accesorios</a></li>
+                </ul>
+            </section>
+
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Legal</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="#" class="transition hover:text-white">Términos y condiciones</a></li>
+                    <li><a href="#" class="transition hover:text-white">Política de privacidad</a></li>
+                    <li><a href="#" class="transition hover:text-white">Sobre la marca</a></li>
+                </ul>
+            </nav>
+
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Contacto</h2>
+                <address class="space-y-3 text-sm not-italic text-slate-300">
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5v13.5H3.75z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 6 7.5 6 7.5-6" />
+                        </svg>
+                        <span>soporte@loop.com</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.294a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.294-.97c.363-.272.53-.738.417-1.173L7.963 3.102A1.125 1.125 0 0 0 6.872 2.25H5.5A2.25 2.25 0 0 0 3.25 4.5v2.25Z" />
+                        </svg>
+                        <span>+34 600 000 000</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5" />
+                        </svg>
+                        <span>Lun a Vie 9:00 - 18:00</span>
+                    </p>
+                </address>
+            </section>
+        </div>
+        <div class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">
+            <p>© 2026 Loop. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
     <script>
-        // Productos de ejemplo
-        const cartItems = [
-            { id: 1, name: "Chaleco Lisy", sku: "Art. 226210105006-027-03", size: "Talle 3", unitPrice: 1990, discount: 656.7, quantity: 1, image: "https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&w=140&q=80" },
-            { id: 2, name: "Cinto Klein", sku: "Art. 226112207301-002-01", size: "Talle único", unitPrice: 590, discount: 194.7, quantity: 1, image: "https://images.unsplash.com/photo-1601924928580-3e5d5f1f8d89?auto=format&fit=crop&w=140&q=80" },
-            { id: 3, name: "Billetera Benny", sku: "Art. 226113807107-002-01", size: "Talle único", unitPrice: 490, discount: 161.7, quantity: 1, image: "https://images.unsplash.com/photo-1548036328-c9fa89d128fa?auto=format&fit=crop&w=140&q=80" }
-        ];
+        const cartItems = document.getElementById('cart-items');
+        const orderTotalElement = document.getElementById('order-total');
+        const params = new URLSearchParams(window.location.search);
 
-        const listElement = document.getElementById("cart-list");
-        const subtotalElement = document.getElementById("subtotal");
-        const taxesElement = document.getElementById("taxes");
-        const totalElement = document.getElementById("total");
-
-        const formatCurrency = value => `UYU ${value.toFixed(2)}`;
-
-        function renderCart() {
-            listElement.innerHTML = "";
-
-            cartItems.forEach(item => {
-                const lineTotal = (item.unitPrice - item.discount) * item.quantity;
-
-                const row = document.createElement("li");
-                row.className = "grid grid-cols-1 gap-4 rounded-xl border border-slate-200 p-4 sm:grid-cols-[120px,1fr,1fr] sm:items-center";
-                row.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}" class="h-28 w-full rounded-lg bg-slate-100 object-contain p-2">
-                    <div>
-                        <h2 class="text-xl font-semibold text-slate-900">${item.name}</h2>
-                        <p class="text-sm text-slate-500 mt-1">SKU: ${item.sku}</p>
-                        <p class="text-sm text-slate-500 mt-1">Talla: ${item.size}</p>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-base font-semibold text-slate-900">Precio unitario: ${formatCurrency(item.unitPrice - item.discount)}</p>
-                        <p class="text-base font-semibold text-slate-900 mt-1">Total: ${formatCurrency(lineTotal)}</p>
-                    </div>
-                `;
-                listElement.appendChild(row);
-            });
-
-            const subtotal = cartItems.reduce((acc, item) => acc + (item.unitPrice - item.discount) * item.quantity, 0);
-            const taxes = subtotal * 0.22;
-            const total = subtotal + taxes;
-
-            subtotalElement.textContent = formatCurrency(subtotal);
-            taxesElement.textContent = formatCurrency(taxes);
-            totalElement.textContent = formatCurrency(total);
+        function parsePrice(value) {
+            return Number(String(value || '').replace(/[^0-9]/g, '')) || 0;
         }
 
+        function formatPrice(value) {
+            return `UYU ${new Intl.NumberFormat('es-UY', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            }).format(value)}`;
+        }
+
+        function getCart() {
+            try {
+                const raw = localStorage.getItem('loop_cart');
+                return raw ? JSON.parse(raw) : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveCart(items) {
+            localStorage.setItem('loop_cart', JSON.stringify(items));
+            if (typeof window.updateNavbarCartTotal === 'function') {
+                window.updateNavbarCartTotal();
+            }
+            window.dispatchEvent(new Event('loop-cart-updated'));
+        }
+
+        function mergeLegacyQueryParams() {
+            const name = params.get('name');
+            const ref = params.get('ref');
+            const price = params.get('price');
+            const size = params.get('size');
+            const qty = params.get('qty');
+            const image = params.get('image');
+            const id = params.get('id') || 'legacy-item';
+
+            if (!name || !price) {
+                return;
+            }
+
+            const quantity = Math.max(1, Number(qty) || 1);
+            const normalizedSize = size || 'N/A';
+            const cart = getCart();
+            const existingIndex = cart.findIndex((item) => item.id === id && item.size === normalizedSize);
+
+            if (existingIndex >= 0) {
+                cart[existingIndex].qty += quantity;
+            } else {
+                cart.push({ id, name, ref: ref || '-', price, size: normalizedSize, qty: quantity, image: image || '' });
+            }
+
+            saveCart(cart);
+            window.history.replaceState({}, document.title, 'Carrito.html');
+        }
+
+        function updateQuantity(id, size, delta) {
+            const cart = getCart();
+            const index = cart.findIndex((item) => item.id === id && item.size === size);
+            if (index < 0) return;
+
+            const nextQty = Math.max(1, Number(cart[index].qty || 1) + delta);
+            cart[index].qty = nextQty;
+            saveCart(cart);
+            renderCart();
+        }
+
+        function removeItem(id, size) {
+            const cart = getCart().filter((item) => !(item.id === id && item.size === size));
+            saveCart(cart);
+            renderCart();
+        }
+
+        function renderCart() {
+            const cart = getCart();
+
+            if (!cart.length) {
+                cartItems.innerHTML = '<p class="text-slate-600">Aun no hay productos en el carrito.</p>';
+                orderTotalElement.textContent = formatPrice(0);
+                return;
+            }
+
+            const total = cart.reduce((acc, item) => acc + parsePrice(item.price) * Number(item.qty || 1), 0);
+
+            cartItems.innerHTML = `
+                <div class="space-y-4">
+                    ${cart.map((item) => {
+                        const unitPrice = parsePrice(item.price);
+                        const qty = Number(item.qty || 1);
+                        const totalPrice = unitPrice * qty;
+                        const itemId = String(item.id).replace(/"/g, '&quot;');
+                        const itemSize = String(item.size || 'N/A').replace(/"/g, '&quot;');
+
+                        return `
+                            <article class="grid gap-3 border-b border-slate-200 pb-4 sm:grid-cols-[56px,1fr,auto] sm:items-center">
+                                <img src="${item.image || ''}" alt="${item.name}" class="h-12 w-12 bg-slate-100 object-contain p-1">
+                                <div>
+                                    <h2 class="text-sm font-bold uppercase text-slate-900">${item.name}</h2>
+                                    <p class="text-xs text-slate-500">Art. ${item.ref || '-'}</p>
+                                    <p class="text-xs text-slate-500">Talle ${item.size || 'N/A'}</p>
+                                </div>
+                                <div class="space-y-2 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <div class="inline-flex items-center border border-slate-300 bg-white text-xs">
+                                            <button type="button" data-action="decrease" data-id="${itemId}" data-size="${itemSize}" class="h-6 w-6 font-bold">-</button>
+                                            <span class="inline-flex h-6 min-w-6 items-center justify-center border-x border-slate-300 px-1">${qty}</span>
+                                            <button type="button" data-action="increase" data-id="${itemId}" data-size="${itemSize}" class="h-6 w-6 font-bold">+</button>
+                                        </div>
+                                        <button type="button" data-action="remove" data-id="${itemId}" data-size="${itemSize}" class="text-slate-500 transition hover:text-slate-700" aria-label="Eliminar ${item.name}">X</button>
+                                    </div>
+                                    <p class="text-xs text-slate-700">Importe unitario: <strong>${formatPrice(unitPrice)}</strong></p>
+                                    <p class="text-xs font-semibold text-slate-900">Importe total: ${formatPrice(totalPrice)}</p>
+                                </div>
+                            </article>
+                        `;
+                    }).join('')}
+                </div>
+            `;
+
+            orderTotalElement.textContent = formatPrice(total);
+        }
+
+        cartItems.addEventListener('click', (event) => {
+            const target = event.target;
+            if (!(target instanceof HTMLButtonElement)) {
+                return;
+            }
+
+            const action = target.dataset.action;
+            const id = target.dataset.id;
+            const size = target.dataset.size;
+
+            if (!action || !id || !size) {
+                return;
+            }
+
+            if (action === 'decrease') {
+                updateQuantity(id, size, -1);
+                return;
+            }
+
+            if (action === 'increase') {
+                updateQuantity(id, size, 1);
+                return;
+            }
+
+            if (action === 'remove') {
+                removeItem(id, size);
+            }
+        });
+
+        mergeLegacyQueryParams();
         renderCart();
     </script>
+
+    <a href="https://wa.me/5491123456789" target="_blank" rel="noopener noreferrer" aria-label="Chatea por WhatsApp"
+       class="fixed z-50 bottom-6 right-6 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-md transition-colors hover:bg-[#20bd5a] focus:outline-none focus:ring-2 focus:ring-green-300 focus:ring-offset-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-7 w-7" aria-hidden="true">
+            <path fill="currentColor" d="M20.52 3.48A11.88 11.88 0 0 0 12.03 0C5.41 0 .02 5.39.02 12c0 2.12.56 4.19 1.62 6L0 24l6.17-1.62A11.95 11.95 0 0 0 12.03 24c6.62 0 12-5.39 12-12 0-3.21-1.25-6.23-3.51-8.52Zm-8.49 18.5a9.9 9.9 0 0 1-5.06-1.39l-.36-.21-3.67.96.98-3.57-.24-.37a9.96 9.96 0 1 1 8.35 4.58Zm5.45-7.45c-.3-.15-1.75-.86-2.02-.96-.27-.1-.46-.15-.65.15-.2.3-.74.96-.9 1.16-.17.2-.34.23-.64.08-.3-.15-1.27-.47-2.42-1.5a8.91 8.91 0 0 1-1.64-2.03c-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.18.2-.3.3-.5.1-.2.05-.38-.03-.53-.08-.15-.65-1.58-.9-2.17-.23-.55-.47-.48-.64-.49h-.55c-.2 0-.53.08-.81.38-.28.3-1.07 1.04-1.07 2.53s1.1 2.93 1.25 3.14c.15.2 2.16 3.3 5.23 4.62.73.31 1.3.5 1.74.64.73.23 1.4.2 1.93.12.59-.09 1.75-.72 2-1.41.25-.69.25-1.28.18-1.41-.08-.12-.27-.2-.57-.35Z" />
+        </svg>
+    </a>
 </body>
 </html>
