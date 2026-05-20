@@ -508,10 +508,50 @@
             { value: 'unica', label: 'Unica' }
         ];
         const FAVORITES_KEY = 'loop_favorites';
+        const CART_KEY = 'loop_cart';
         const CATALOG_FILTERS_KEY = 'loop_catalog_filters';
         const CATALOG_RESTORE_ONCE_KEY = 'loop_catalog_restore_once';
         const categoriasPermitidas = new Set(['camisas', 'pantalones', 'accesorios', 'calzado']);
         let tallasActivas = new Set();
+
+        function getCart() {
+            try {
+                const raw = localStorage.getItem(CART_KEY);
+                return raw ? JSON.parse(raw) : [];
+            } catch (error) {
+                return [];
+            }
+        }
+
+        function saveCart(cart) {
+            localStorage.setItem(CART_KEY, JSON.stringify(cart));
+        }
+
+        function parsePriceToNumber(priceText) {
+            return Number(String(priceText || '').replace(/[^0-9]/g, '')) || 0;
+        }
+
+        function addProductToCart(product) {
+            const cart = getCart();
+            const existingIndex = cart.findIndex((item) => item.id === product.id);
+
+            if (existingIndex >= 0) {
+                cart[existingIndex].qty += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    ref: product.ref,
+                    price: product.price,
+                    priceValue: product.priceValue,
+                    size: product.size,
+                    qty: 1,
+                    image: product.image
+                });
+            }
+
+            saveCart(cart);
+        }
 
         function getFavorites() {
             try {
@@ -787,6 +827,38 @@
                     abrirVistaProducto();
                 }
             });
+
+            const addToCartButton = tarjeta.querySelector('.p-4 button');
+            if (addToCartButton) {
+                addToCartButton.addEventListener('click', (event) => {
+                    event.stopPropagation();
+
+                    const name = tarjeta.querySelector('h3')?.textContent?.trim() || 'Producto';
+                    const priceText = tarjeta.querySelector('p.text-lg')?.textContent?.trim() || '$0';
+                    const priceValue = parsePriceToNumber(priceText);
+                    const image = tarjeta.querySelector('img')?.getAttribute('src') || '';
+
+                    addProductToCart({
+                        id: productId,
+                        name,
+                        ref: productId.toUpperCase(),
+                        price: priceText,
+                        priceValue,
+                        size: 'N/A',
+                        image
+                    });
+
+                    const originalText = addToCartButton.textContent;
+                    addToCartButton.textContent = 'Agregado';
+                    addToCartButton.classList.remove('bg-gray-900', 'hover:bg-black');
+                    addToCartButton.classList.add('bg-emerald-600', 'hover:bg-emerald-700');
+                    window.setTimeout(() => {
+                        addToCartButton.textContent = originalText;
+                        addToCartButton.classList.remove('bg-emerald-600', 'hover:bg-emerald-700');
+                        addToCartButton.classList.add('bg-gray-900', 'hover:bg-black');
+                    }, 900);
+                });
+            }
         });
 
         if (!shouldRestoreFiltersFromProduct() || !restoreCatalogFilters()) {

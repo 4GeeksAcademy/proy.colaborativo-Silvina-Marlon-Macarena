@@ -74,7 +74,6 @@
     <main id="contenido" class="mx-auto w-[92%] max-w-6xl py-8 pb-10 md:py-10 md:pb-12">
         <section class="mx-auto max-w-4xl border border-slate-300 bg-[#f3f3f3] p-4 md:p-6">
             <h1 class="mb-4 bg-black px-3 py-2 text-sm font-bold uppercase tracking-wide text-white">Detalle del pedido</h1>
-
             <section id="cart-items" class="bg-white px-3 py-4 md:px-4">
                 <p class="text-slate-600">Aun no hay productos en el carrito.</p>
             </section>
@@ -97,6 +96,10 @@
             <div class="mt-5 flex items-center justify-between border-t border-slate-300 pt-4 text-lg font-bold text-slate-900">
                 <p>Importe total</p>
                 <p id="order-total">UYU 0,00</p>
+            </div>
+
+            <div class="mt-4 flex justify-end">
+                <a id="checkout-btn" href="formulario-pago/index.html" class="inline-flex rounded-full border border-loop-700 bg-loop-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-loop-600">Proceder al pago</a>
             </div>
         </section>
     </main>
@@ -155,10 +158,15 @@
 
     <script>
         const cartItems = document.getElementById('cart-items');
+        const checkoutBtn = document.getElementById('checkout-btn');
         const orderTotalElement = document.getElementById('order-total');
         const params = new URLSearchParams(window.location.search);
 
         function parsePrice(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) {
+                return value;
+            }
+
             return Number(String(value || '').replace(/[^0-9]/g, '')) || 0;
         }
 
@@ -234,18 +242,21 @@
         function renderCart() {
             const cart = getCart();
 
+            checkoutBtn.classList.remove('pointer-events-none', 'opacity-60');
+
             if (!cart.length) {
-                cartItems.innerHTML = '<p class="text-slate-600">Aun no hay productos en el carrito.</p>';
+                cartItems.innerHTML = '<p class="text-slate-600">Aún no hay productos en el carrito.</p>';
+                checkoutBtn.classList.add('pointer-events-none', 'opacity-60');
                 orderTotalElement.textContent = formatPrice(0);
                 return;
             }
 
-            const total = cart.reduce((acc, item) => acc + parsePrice(item.price) * Number(item.qty || 1), 0);
+            const total = cart.reduce((acc, item) => acc + parsePrice(item.priceValue ?? item.price) * Number(item.qty || 1), 0);
 
             cartItems.innerHTML = `
                 <div class="space-y-4">
                     ${cart.map((item) => {
-                        const unitPrice = parsePrice(item.price);
+                        const unitPrice = parsePrice(item.priceValue ?? item.price);
                         const qty = Number(item.qty || 1);
                         const totalPrice = unitPrice * qty;
                         const itemId = String(item.id).replace(/"/g, '&quot;');
@@ -279,6 +290,19 @@
 
             orderTotalElement.textContent = formatPrice(total);
         }
+
+        checkoutBtn.addEventListener('click', (event) => {
+            const cart = getCart();
+
+            if (!cart.length) {
+                event.preventDefault();
+                alert('Tu carrito está vacío. Agrega productos antes de pagar.');
+                return;
+            }
+
+            event.preventDefault();
+            window.location.href = 'formulario-pago/index.html';
+        });
 
         cartItems.addEventListener('click', (event) => {
             const target = event.target;
