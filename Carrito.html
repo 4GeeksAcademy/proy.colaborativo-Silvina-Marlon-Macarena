@@ -63,7 +63,7 @@
             <p class="text-slate-600">Aún no hay productos en el carrito.</p>
         </section>
 
-        <a id="checkout-btn" href="Formulario-de-pago.html" class="mt-6 inline-flex rounded-full border border-loop-700 bg-loop-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-loop-600">Proceder al pago</a>
+        <a id="checkout-btn" href="formulario-pago/index.html" class="mt-6 inline-flex rounded-full border border-loop-700 bg-loop-700 px-6 py-3 text-sm font-medium text-white transition hover:bg-loop-600">Proceder al pago</a>
     </main>
 
     <footer class="border-t border-slate-200 bg-slate-900 text-slate-200">
@@ -101,9 +101,14 @@
 
     <script>
         const cartItems = document.getElementById('cart-items');
+        const checkoutBtn = document.getElementById('checkout-btn');
         const params = new URLSearchParams(window.location.search);
 
         function parsePrice(value) {
+            if (typeof value === 'number' && Number.isFinite(value)) {
+                return value;
+            }
+
             return Number(String(value || '').replace(/[^0-9]/g, '')) || 0;
         }
 
@@ -154,12 +159,18 @@
         function renderCart() {
             const cart = getCart();
 
+            checkoutBtn.classList.remove('pointer-events-none', 'opacity-60');
+
             if (!cart.length) {
                 cartItems.innerHTML = '<p class="text-slate-600">Aún no hay productos en el carrito.</p>';
+                checkoutBtn.classList.add('pointer-events-none', 'opacity-60');
                 return;
             }
 
-            const total = cart.reduce((acc, item) => acc + parsePrice(item.price) * item.qty, 0);
+            const total = cart.reduce((acc, item) => {
+                const itemPrice = parsePrice(item.priceValue ?? item.price);
+                return acc + itemPrice * item.qty;
+            }, 0);
 
             cartItems.innerHTML = `
                 <div class="space-y-5">
@@ -184,6 +195,19 @@
                 </div>
             `;
         }
+
+        checkoutBtn.addEventListener('click', (event) => {
+            const cart = getCart();
+
+            if (!cart.length) {
+                event.preventDefault();
+                alert('Tu carrito está vacío. Agrega productos antes de pagar.');
+                return;
+            }
+
+            event.preventDefault();
+            window.location.href = 'formulario-pago/index.html';
+        });
 
         mergeLegacyQueryParams();
         renderCart();
