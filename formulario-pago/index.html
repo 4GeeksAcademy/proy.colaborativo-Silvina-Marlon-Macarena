@@ -209,6 +209,7 @@
 
 <script>
 const CART_KEY = "loop_cart";
+const CHECKOUT_SUMMARY_KEY = "loop_checkout_summary";
 
 function getCart() {
   try {
@@ -345,6 +346,7 @@ document.getElementById("bankSelect").addEventListener("change", e => {
 document.getElementById("checkoutForm").addEventListener("submit", e => {
   const metodo = document.querySelector("input[name=metodo_pago]:checked").value;
   let valido = false;
+  let bankUrl = "";
 
   if (metodo === "tarjeta") {
     if (validarTarjeta()) valido = true;
@@ -367,14 +369,13 @@ document.getElementById("checkoutForm").addEventListener("submit", e => {
       banco.classList.add("error");
       alert("⚠️ Debes seleccionar un banco");
     } else {
-      e.preventDefault();
-      const url = bankUrls[banco.value];
-      if (!url) {
+      bankUrl = bankUrls[banco.value] || "";
+      if (!bankUrl) {
         alert("⚠️ Banco no válido");
+        e.preventDefault();
         return;
       }
-      window.location.href = url;
-      return;
+      valido = true;
     }
   }
 
@@ -388,9 +389,35 @@ document.getElementById("checkoutForm").addEventListener("submit", e => {
   }
 
   e.preventDefault();
+
+  const totalTexto = totalEl.innerText || formatPrice(subtotal + impuestos);
+  const fecha = new Intl.DateTimeFormat("es-UY", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(new Date());
+
+  const transaccion = `LOOP-${Date.now().toString().slice(-8)}`;
+  const datos = {
+    cliente: document.querySelector("input[name=nombreCompleto]").value.trim(),
+    email: document.querySelector("input[name=email]").value.trim(),
+    telefono: document.querySelector("input[name=telefono]").value.trim(),
+    metodo,
+    banco: metodo === "banco" ? document.getElementById("bankSelect").value : "-",
+    subtotal: document.getElementById("subtotal").innerText,
+    impuestos: document.getElementById("impuestos").innerText,
+    total: totalTexto,
+    fecha,
+    transaccion
+  };
+
+  localStorage.setItem(CHECKOUT_SUMMARY_KEY, JSON.stringify(datos));
   localStorage.removeItem(CART_KEY);
-  alert("Compra confirmada. Gracias por tu pedido.");
-  window.location.href = "../index.html";
+
+  if (metodo === "banco" && bankUrl) {
+    window.open(bankUrl, "_blank", "noopener,noreferrer");
+  }
+
+  window.location.href = "resumen-compra.html";
 });
 
 document.getElementById("subtotal").innerText = formatPrice(subtotal);
