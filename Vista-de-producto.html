@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="fr">
 <head>
             <script type="application/ld+json">
             {
@@ -16,6 +16,7 @@
     <title>Vista de Producto | Loop</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="navbar-cart-total.js" defer></script>
+    <script src="i18n.js" defer></script>
     <script>
         tailwind.config = {
             theme: {
@@ -45,34 +46,41 @@
             <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
 
             <form action="index.html" method="get" role="search" class="flex-1 mx-4 max-w-md">
-                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <label for="busqueda" class="sr-only" data-i18n="navbar.search_label">Rechercher des produits</label>
                 <div class="flex items-center gap-2 border-b border-slate-900 px-1 pb-1">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="7"></circle>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-3.5-3.5"></path>
                     </svg>
-                    <input id="busqueda" name="busqueda" type="search" placeholder="BUSCAR" class="w-full border-none bg-transparent text-xs font-medium uppercase tracking-[0.08em] text-slate-900 outline-none placeholder:text-slate-900" autocomplete="off">
+                    <input id="busqueda" name="busqueda" type="search" placeholder="RECHERCHER" data-i18n-attr="placeholder:navbar.search_placeholder" class="w-full border-none bg-transparent text-xs font-medium uppercase tracking-[0.08em] text-slate-900 outline-none placeholder:text-slate-900" autocomplete="off">
                 </div>
             </form>
 
             <div class="flex items-center gap-4 text-slate-900">
-                <button type="button" aria-label="Mi cuenta" class="inline-flex items-center transition hover:opacity-70">
+                <div class="flex items-center gap-2">
+                    <label for="language-select" class="sr-only" data-i18n="navbar.language_label">Langue</label>
+                    <select id="language-select" data-language-select class="rounded-md border border-slate-300 bg-white px-2 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-slate-900 outline-none focus:border-loop-700">
+                        <option value="fr">FR</option>
+                        <option value="es">ES</option>
+                    </select>
+                </div>
+                <button type="button" aria-label="Mon compte" data-i18n-attr="aria-label:navbar.account_aria" class="inline-flex items-center transition hover:opacity-70">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.12a7.5 7.5 0 0 1 15 0" />
                     </svg>
                 </button>
-                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center gap-2 transition hover:opacity-70">
+                <a href="Carrito.html" aria-label="Voir le panier" data-i18n-attr="aria-label:navbar.cart_aria" class="inline-flex items-center gap-2 transition hover:opacity-70">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12l-1 11H7l-1-11Zm3-2.25A3 3 0 0 1 12 2.25a3 3 0 0 1 3 3" />
                     </svg>
-                    <span class="text-sm" data-cart-total>UYU 0,00</span>
+                    <span class="text-sm" data-cart-total">€ 0,00</span>
                 </a>
             </div>
         </nav>
     </header>
 
     <main id="contenido" class="mx-auto w-[92%] max-w-5xl py-6 md:py-8">
-        <a href="Catalogo.html#product-list" class="mb-6 inline-flex rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600">Volver al listado</a>
+        <a href="Catalogo.html#product-list" class="mb-6 inline-flex rounded-full border border-loop-700 bg-loop-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-loop-600" data-i18n="product.back_to_list">Retour a la liste</a>
 
         <article id="product-view" class="space-y-8">
             <section class="relative rounded-2xl border border-slate-300 bg-white p-4 shadow-sm md:p-6">
@@ -88,28 +96,28 @@
                     <section>
                         <h1 id="product-name" class="text-3xl font-bold text-slate-900">Camisa Marrón Rayada</h1>
                         <p id="product-ref" class="mt-1 text-base text-slate-500">Ref: CAM-001</p>
-                        <p id="product-price" class="mt-2 text-4xl font-bold text-slate-900">$2290</p>
+                        <p id="product-price" class="mt-2 text-4xl font-bold text-slate-900">€ 55</p>
 
                         <div class="mt-5">
-                            <label for="talla-producto" class="mb-2 block text-xl font-semibold text-slate-900">Talla</label>
+                            <label for="talla-producto" class="mb-2 block text-xl font-semibold text-slate-900" data-i18n="product.size">Taille</label>
                             <select id="talla-producto" class="w-full max-w-xs rounded-lg border border-slate-300 bg-white px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700"></select>
                         </div>
 
                         <div class="mt-5">
-                            <label for="cantidad-producto" class="mb-2 block text-xl font-semibold text-slate-900">Cantidad</label>
+                            <label for="cantidad-producto" class="mb-2 block text-xl font-semibold text-slate-900" data-i18n="product.quantity">Quantite</label>
                             <input id="cantidad-producto" type="number" min="1" value="1" class="w-20 rounded-lg border border-slate-300 px-3 py-2 text-xl font-medium text-slate-900 outline-none focus:border-loop-700">
                         </div>
 
-                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-red-500 border-2 border-red-600 px-5 py-3 text-xl font-semibold text-white transition hover:bg-red-600 hover:border-red-800">Agregar al carrito</a>
+                        <a id="add-to-cart" href="Carrito.html" class="mt-6 inline-flex w-full max-w-xs items-center justify-center rounded-lg bg-red-500 border-2 border-red-600 px-5 py-3 text-xl font-semibold text-white transition hover:bg-red-600 hover:border-red-800" data-i18n="product.add_to_cart">Ajouter au panier</a>
                     </section>
                 </div>
             </section>
 
             <section class="rounded-2xl border border-slate-300 bg-white p-6 shadow-sm md:p-7">
-                <h2 class="mb-4 text-3xl font-semibold text-slate-900">Descripción</h2>
+                <h2 class="mb-4 text-3xl font-semibold text-slate-900" data-i18n="product.description">Description</h2>
                 <ul class="list-disc space-y-2 pl-6 text-xl text-slate-800">
-                    <li><span class="font-semibold">Materiales:</span> <span id="product-material">Algodón ligero</span></li>
-                    <li><span class="font-semibold">Uso recomendado:</span> <span id="product-use">Oficina y salidas casuales</span></li>
+                    <li><span class="font-semibold" data-i18n="product.materials">Materiaux :</span> <span id="product-material">Algodón ligero</span></li>
+                    <li><span class="font-semibold" data-i18n="product.recommended_use">Usage recommande :</span> <span id="product-use">Oficina y salidas casuales</span></li>
                 </ul>
             </section>
         </article>
@@ -118,26 +126,26 @@
     <footer class="mt-8 bg-black text-slate-200">
         <div class="mx-auto grid w-[92%] max-w-6xl gap-10 py-12 md:grid-cols-3">
             <section aria-labelledby="footer-categorias">
-                <h2 id="footer-categorias" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Categorías</h2>
+                <h2 id="footer-categorias" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white" data-i18n="footer.categories">Categories</h2>
                 <ul class="space-y-3 text-sm text-slate-300">
-                    <li><a href="Catalogo.html?categoria=calzado" class="transition hover:text-white">Calzado</a></li>
-                    <li><a href="Catalogo.html?categoria=camisas" class="transition hover:text-white">Camisas</a></li>
-                    <li><a href="Catalogo.html?categoria=pantalones" class="transition hover:text-white">Pantalones</a></li>
-                    <li><a href="Catalogo.html?categoria=accesorios" class="transition hover:text-white">Accesorios</a></li>
+                    <li><a href="Catalogo.html?categoria=calzado" class="transition hover:text-white" data-i18n="footer.shoes">Chaussures</a></li>
+                    <li><a href="Catalogo.html?categoria=camisas" class="transition hover:text-white" data-i18n="footer.shirts">Chemises</a></li>
+                    <li><a href="Catalogo.html?categoria=pantalones" class="transition hover:text-white" data-i18n="footer.pants">Pantalons</a></li>
+                    <li><a href="Catalogo.html?categoria=accesorios" class="transition hover:text-white" data-i18n="footer.accessories">Accessoires</a></li>
                 </ul>
             </section>
 
             <nav aria-labelledby="footer-legal">
-                <h2 id="footer-legal" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Legal</h2>
+                <h2 id="footer-legal" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white" data-i18n="footer.legal">Mentions legales</h2>
                 <ul class="space-y-3 text-sm text-slate-300">
-                    <li><a href="#" class="transition hover:text-white">Términos y condiciones</a></li>
-                    <li><a href="#" class="transition hover:text-white">Política de privacidad</a></li>
-                    <li><a href="#" class="transition hover:text-white">Sobre la marca</a></li>
+                    <li><a href="#" class="transition hover:text-white" data-i18n="footer.terms">Conditions generales</a></li>
+                    <li><a href="#" class="transition hover:text-white" data-i18n="footer.privacy">Politique de confidentialite</a></li>
+                    <li><a href="#" class="transition hover:text-white" data-i18n="footer.about">A propos de la marque</a></li>
                 </ul>
             </nav>
 
             <section aria-labelledby="footer-contacto">
-                <h2 id="footer-contacto" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Contacto</h2>
+                <h2 id="footer-contacto" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white" data-i18n="footer.contact">Contact</h2>
                 <address class="space-y-3 text-sm not-italic text-slate-300">
                     <p class="flex items-center gap-2">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
@@ -157,38 +165,39 @@
                             <circle cx="12" cy="12" r="8"></circle>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5" />
                         </svg>
-                        <span>Lun a Vie 9:00 - 18:00</span>
+                        <span data-i18n="footer.hours">Lun a Ven 9:00 - 18:00</span>
                     </p>
                 </address>
             </section>
         </div>
         <div class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">
-            <p>© 2026 Loop. Todos los derechos reservados.</p>
+            <p data-i18n="footer.rights">© 2026 Loop. Tous droits reserves.</p>
         </div>
     </footer>
 
     <script>
         const productos = {
-            'prod-camisa1': { name: 'Camisa Marrón Rayada', ref: 'CAM-001', price: '$2290', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Camisas/Camisa1-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa1-b.jpg', material: 'Algodón ligero', use: 'Oficina y salidas casuales' },
-            'prod-camisa2': { name: 'Camisa de Cuadros Marrones', ref: 'CAM-002', price: '$2390', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Camisas/Camisa2-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa2-b.jpg', material: 'Algodón y lino', use: 'Uso diario y looks urbanos' },
-            'prod-camisa3': { name: 'Blusa Celeste Plisada', ref: 'CAM-003', price: '$2490', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Camisas/Camisa3-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa3-b.jpg', material: 'Tejido liviano plisado', use: 'Salidas casuales y oficina' },
-            'prod-camisa4': { name: 'Camisa Oversize Negra con Brillo', ref: 'CAM-004', price: '$2590', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Camisas/camisa4-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa4-b.webp', material: 'Poliéster suave', use: 'Eventos y noche urbana' },
-            'prod-camisa5': { name: 'Camisa con Estampado', ref: 'CAM-005', price: '$2690', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Camisas/camisa5-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa5-b.webp', material: 'Algodón estampado', use: 'Look casual y creativo' },
-            'prod-pantalon1': { name: 'Pantalón Marrón Recto', ref: 'PAN-001', price: '$2790', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Pantalones/Pantalon1-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon1-b.jpg', material: 'Gabardina de algodón', use: 'Trabajo y salidas casuales' },
-            'prod-pantalon2': { name: 'Pantalón Estampado Azul', ref: 'PAN-002', price: '$2890', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/Pantalon2-a.jpg', imageB: 'Recursos Gráficos/Pantalones/pantalon2-b.jpg', material: 'Tela fresca estampada', use: 'Verano y fines de semana' },
-            'prod-pantalon3': { name: 'Jeans Anchos Oscuros', ref: 'PAN-003', price: '$2990', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Pantalones/Pantalon3-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon3-b.jpg', material: 'Denim resistente', use: 'Uso diario urbano' },
-            'prod-pantalon4': { name: 'Pantalón Ancho Azul Medio', ref: 'PAN-004', price: '$3090', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/pantalon4-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon4-b.webp', material: 'Mezcla de algodón y elastano', use: 'Outfits relajados' },
-            'prod-pantalon5': { name: 'Pantalón Marfil', ref: 'PAN-005', price: '$3190', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Pantalones/pantalon5-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon5-b.webp', material: 'Tela de caída suave', use: 'Oficina y eventos informales' },
-            'prod-accesorio1': { name: 'Caravana dorada', ref: 'ACC-001', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio1-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio1-b.webp', material: 'Aleación dorada', use: 'Complemento para ocasión especial' },
-            'prod-accesorio2': { name: 'Brazalete Dorado', ref: 'ACC-002', price: '$499', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio2-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio2-b.webp', material: 'Metal pulido', use: 'Looks elegantes y casuales' },
-            'prod-accesorio3': { name: 'Cinturón Negro', ref: 'ACC-003', price: '$799', sizes: ['Única', 'L', 'XL'], imageA: 'Recursos Gráficos/Accesorios/accesorio3-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio3-b.webp', material: 'Cuero sintético', use: 'Ajuste para jeans y pantalones' },
-            'prod-accesorio4': { name: 'Bandolera Negra', ref: 'ACC-004', price: '$1599', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio4-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio4-b.webp', material: 'Textil reforzado', use: 'Traslado diario y urbano' },
-            'prod-accesorio5': { name: 'Bufanda tejida', ref: 'ACC-005', price: '$999', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio5-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio5-b.webp', material: 'Tejido acrílico', use: 'Abrigo en clima fresco' },
-            'prod-calzado1': { name: 'Bota Texana Negra', ref: 'CAL-001', price: '$3790', sizes: ['35', '36', '37'], imageA: 'Recursos Gráficos/Calzado/calzado1-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado1-b.webp', material: 'Cuero sintético', use: 'Look urbano y western' },
-            'prod-calzado2': { name: 'Zapato Derby Marrón', ref: 'CAL-002', price: '$3990', sizes: ['36', '37', '38'], imageA: 'Recursos Gráficos/Calzado/calzado2-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado2-b.webp', material: 'Acabado tipo cuero', use: 'Oficina y ocasiones formales' },
-            'prod-calzado3': { name: 'Botas de Cuero Negras', ref: 'CAL-003', price: '$4290', sizes: ['38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado3-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado3-b.webp', material: 'Cuero y suela firme', use: 'Uso diario de alto tránsito' },
-            'prod-calzado4': { name: 'Zapatillas Deportivas', ref: 'CAL-004', price: '$4590', sizes: ['35', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado4-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado4-b.webp', material: 'Malla transpirable', use: 'Actividad urbana y fitness' },
-            'prod-calzado5': { name: 'Zapatilla Urbana Marrón', ref: 'CAL-005', price: '$4990', sizes: ['37', '38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado5-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado5-b.webp', material: 'Textil premium', use: 'Recorridos urbanos diarios' }
+        const productos = {
+            'prod-camisa1': { name: 'Camisa Marrón Rayada', ref: 'CAM-001', price: '€ 55', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Camisas/Camisa1-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa1-b.jpg', material: 'product.material.algodon_ligero', use: 'product.use.oficina_salidas' },
+            'prod-camisa2': { name: 'Camisa de Cuadros Marrones', ref: 'CAM-002', price: '€ 57', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Camisas/Camisa2-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa2-b.jpg', material: 'product.material.algodon_lino', use: 'product.use.uso_diario_urbano' },
+            'prod-camisa3': { name: 'Blusa Celeste Plisada', ref: 'CAM-003', price: '€ 59', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Camisas/Camisa3-a.jpg', imageB: 'Recursos Gráficos/Camisas/Camisa3-b.jpg', material: 'product.material.tejido_liviano_plisado', use: 'product.use.salidas_oficina' },
+            'prod-camisa4': { name: 'Camisa Oversize Negra con Brillo', ref: 'CAM-004', price: '€ 62', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Camisas/camisa4-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa4-b.webp', material: 'product.material.poliester_suave', use: 'product.use.eventos_noche' },
+            'prod-camisa5': { name: 'Camisa con Estampado', ref: 'CAM-005', price: '€ 64', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Camisas/camisa5-a.webp', imageB: 'Recursos Gráficos/Camisas/camisa5-b.webp', material: 'product.material.algodon_estampado', use: 'product.use.look_casual_creativo' },
+            'prod-pantalon1': { name: 'Pantalón Marrón Recto', ref: 'PAN-001', price: '€ 66', sizes: ['S', 'M', 'L'], imageA: 'Recursos Gráficos/Pantalones/Pantalon1-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon1-b.jpg', material: 'product.material.gabardina_algodon', use: 'product.use.trabajo_salidas' },
+            'prod-pantalon2': { name: 'Pantalón Estampado Azul', ref: 'PAN-002', price: '€ 69', sizes: ['M', 'L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/Pantalon2-a.jpg', imageB: 'Recursos Gráficos/Pantalones/pantalon2-b.jpg', material: 'product.material.tela_fresca_estampada', use: 'product.use.verano_finde' },
+            'prod-pantalon3': { name: 'Jeans Anchos Oscuros', ref: 'PAN-003', price: '€ 71', sizes: ['S', 'M'], imageA: 'Recursos Gráficos/Pantalones/Pantalon3-a.jpg', imageB: 'Recursos Gráficos/Pantalones/Pantalon3-b.jpg', material: 'product.material.denim_resistente', use: 'product.use.uso_diario_urbano2' },
+            'prod-pantalon4': { name: 'Pantalón Ancho Azul Medio', ref: 'PAN-004', price: '€ 74', sizes: ['L', 'XL'], imageA: 'Recursos Gráficos/Pantalones/pantalon4-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon4-b.webp', material: 'product.material.mezcla_algodon_elastano', use: 'product.use.outfits_relajados' },
+            'prod-pantalon5': { name: 'Pantalón Marfil', ref: 'PAN-005', price: '€ 76', sizes: ['M', 'L'], imageA: 'Recursos Gráficos/Pantalones/pantalon5-a.webp', imageB: 'Recursos Gráficos/Pantalones/pantalon5-b.webp', material: 'product.material.tela_caida_suave', use: 'product.use.oficina_eventos' },
+            'prod-accesorio1': { name: 'Caravana dorada', ref: 'ACC-001', price: '€ 12', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio1-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio1-b.webp', material: 'product.material.aleacion_dorada', use: 'product.use.complemento_ocasion' },
+            'prod-accesorio2': { name: 'Brazalete Dorado', ref: 'ACC-002', price: '€ 12', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio2-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio2-b.webp', material: 'product.material.metal_pulido', use: 'product.use.looks_elegantes_casuales' },
+            'prod-accesorio3': { name: 'Cinturón Negro', ref: 'ACC-003', price: '€ 19', sizes: ['Única', 'L', 'XL'], imageA: 'Recursos Gráficos/Accesorios/accesorio3-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio3-b.webp', material: 'product.material.cuero_sintetico', use: 'product.use.ajuste_jeans_pantalones' },
+            'prod-accesorio4': { name: 'Bandolera Negra', ref: 'ACC-004', price: '€ 38', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio4-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio4-b.webp', material: 'product.material.textil_reforzado', use: 'product.use.traslado_diario_urbano' },
+            'prod-accesorio5': { name: 'Bufanda tejida', ref: 'ACC-005', price: '€ 24', sizes: ['Única'], imageA: 'Recursos Gráficos/Accesorios/accesorio5-a.webp', imageB: 'Recursos Gráficos/Accesorios/accesorio5-b.webp', material: 'product.material.tejido_acrilico', use: 'product.use.abrigo_clima_fresco' },
+            'prod-calzado1': { name: 'Bota Texana Negra', ref: 'CAL-001', price: '€ 90', sizes: ['35', '36', '37'], imageA: 'Recursos Gráficos/Calzado/calzado1-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado1-b.webp', material: 'product.material.cuero_sintetico', use: 'product.use.look_urbano_western' },
+            'prod-calzado2': { name: 'Zapato Derby Marrón', ref: 'CAL-002', price: '€ 95', sizes: ['36', '37', '38'], imageA: 'Recursos Gráficos/Calzado/calzado2-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado2-b.webp', material: 'product.material.acabado_tipo_cuero', use: 'product.use.oficina_formales' },
+            'prod-calzado3': { name: 'Botas de Cuero Negras', ref: 'CAL-003', price: '€ 102', sizes: ['38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado3-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado3-b.webp', material: 'product.material.cuero_suela_firme', use: 'product.use.uso_diario_alto_transito' },
+            'prod-calzado4': { name: 'Zapatillas Deportivas', ref: 'CAL-004', price: '€ 109', sizes: ['35', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado4-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado4-b.webp', material: 'product.material.malla_transpirable', use: 'product.use.actividad_urbana_fitness' },
+            'prod-calzado5': { name: 'Zapatilla Urbana Marrón', ref: 'CAL-005', price: '€ 119', sizes: ['37', '38', '39', '40'], imageA: 'Recursos Gráficos/Calzado/calzado5-a.webp', imageB: 'Recursos Gráficos/Calzado/calzado5-b.webp', material: 'product.material.textil_premium', use: 'product.use.recorridos_urbanos_diarios' }
         };
 
         const orderedProductIds = Object.keys(productos);
@@ -254,19 +263,38 @@
             return ['S', 'M', 'L', 'XL'];
         }
 
+        function getTranslatedProductName(productId, fallbackName) {
+            const key = `product.name.${productId}`;
+
+            if (window.loopI18n && typeof window.loopI18n.translateKey === 'function') {
+                const currentLang = document.documentElement.lang || window.loopI18n.defaultLanguage;
+                return window.loopI18n.translateKey(key, currentLang);
+            }
+
+            return fallbackName;
+        }
+
         function renderProduct(productId, data) {
             currentProductId = productId;
-            currentProduct = data;
+            const translatedName = getTranslatedProductName(productId, data.name);
+            currentProduct = { ...data, name: translatedName };
 
-            productName.textContent = data.name;
+            productName.textContent = translatedName;
             productRef.textContent = `Ref: ${data.ref}`;
             productPrice.textContent = data.price;
             productImageA.src = data.imageA;
-            productImageA.alt = `${data.name} vista frontal`;
+            productImageA.alt = `${translatedName} vista frontal`;
             productImageB.src = data.imageB;
-            productImageB.alt = `${data.name} vista trasera`;
-            productMaterial.textContent = data.material;
-            productUse.textContent = data.use;
+            productImageB.alt = `${translatedName} vista trasera`;
+            // Traducción dinámica de material y uso recomendado
+            const lang = document.documentElement.lang || (window.loopI18n && window.loopI18n.defaultLanguage) || 'fr';
+            if (window.loopI18n && typeof window.loopI18n.translateKey === 'function') {
+                productMaterial.textContent = window.loopI18n.translateKey(data.material, lang);
+                productUse.textContent = window.loopI18n.translateKey(data.use, lang);
+            } else {
+                productMaterial.textContent = data.material;
+                productUse.textContent = data.use;
+            }
 
             const allSizes = getAllSizesByProductId(productId);
             const availableSizes = new Set(data.sizes);
@@ -286,7 +314,7 @@
             const favorites = getFavorites();
             updateFavoriteButtonState(favoriteToggleBtn, favorites.has(productId));
 
-            document.title = `${data.name} | Loop`;
+            document.title = `${translatedName} | Loop`;
         }
 
         function getAdjacentProductId(direction) {
@@ -365,6 +393,13 @@
         window.addEventListener('hashchange', () => {
             const nextId = resolveProductIdFromHash();
             renderProduct(nextId, productos[nextId]);
+        });
+
+        window.addEventListener('loop:language-changed', () => {
+            // Forzar traducción dinámica de material y uso
+            if (currentProductId && productos[currentProductId]) {
+                renderProduct(currentProductId, productos[currentProductId]);
+            }
         });
 
         renderProduct(currentProductId, currentProduct);

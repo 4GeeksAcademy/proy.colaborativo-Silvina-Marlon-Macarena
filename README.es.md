@@ -42,3 +42,51 @@ Esta y otras plantillas son utilizadas para [aprender a programar](https://4geek
 Realizado por [Alejandro Sánchez](https://twitter.com/alesanchezr) y muchos otros contribuyentes. 
 
 Conoce más sobre nuestros [Cursos de Programación](https://4geeksacademy.com/es/curso-de-programacion-desde-cero/?lang=es) para convertirte en [Full Stack Developer](https://4geeksacademy.com/es/desarrollador-full-stack/desarrollador-full-stack), o nuestro [Data Science Bootcamp](https://4geeksacademy.com/es/coding-bootcamps/curso-datascience-machine-learning).
+
+## Sistema de idiomas (fr/es)
+
+Se implemento un sistema de traduccion reutilizable con JavaScript vanilla y sin duplicar HTML por idioma.
+
+### Estructura recomendada
+
+- `i18n.js`: diccionario de traducciones (`fr` y `es`), cambio de idioma en vivo, persistencia en `localStorage` y aplicacion de textos en DOM.
+- `index.html`, `Catalogo.html`, `Vista-de-producto.html`, `Carrito.html`, `Formulario-de-pago.html`, `formulario-pago/index.html`: mantienen una sola version HTML y usan atributos `data-*` para marcar textos traducibles.
+
+### Como marcar textos traducibles
+
+- Texto interno:
+
+```html
+<h1 data-i18n="home.hero_title_line1">Style urbain sans effort</h1>
+```
+
+- Atributos (`placeholder`, `aria-label`, etc.):
+
+```html
+<input data-i18n-attr="placeholder:navbar.search_placeholder" placeholder="RECHERCHER">
+```
+
+### Selector de idioma
+
+En cada navbar se agrega un selector:
+
+```html
+<select data-language-select>
+  <option value="fr">FR</option>
+  <option value="es">ES</option>
+</select>
+```
+
+### Comportamiento
+
+- Idioma por defecto: `fr`.
+- Idioma secundario: `es`.
+- Persistencia: `localStorage` con la clave `loop_language`.
+- Cambio dinamico: los textos cambian sin recargar la pagina.
+
+### Buenas practicas para escalar
+
+- Reutilizar llaves semanticas (`navbar.*`, `home.*`, `catalog.*`, `footer.*`).
+- Evitar hardcodear textos en scripts que renderizan HTML; usar `window.loopI18n.translateKey(...)`.
+- Mantener nombres de archivos en minusculas para evitar problemas en Linux/Codespaces.
+- Agregar nuevas traducciones primero al diccionario y luego marcar HTML con `data-i18n`.
