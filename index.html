@@ -1,218 +1,252 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Carrito de Compras | Detalle del Pedido en UYU</title>
-    <meta
-      name="description"
-      content="Carrito de compras completo con detalle del pedido: miniaturas, precio unitario, cantidad y total por producto. Vista optimizada para movil, tablet y escritorio."
-    />
-    <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Carrito de Compras | Detalle del Pedido" />
-    <meta
-      property="og:description"
-      content="Consulta y gestiona tu pedido con un carrito claro, semantico y responsive."
-    />
-    <meta property="og:locale" content="es_UY" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Carrito de Compras | Detalle del Pedido" />
-    <meta
-      name="twitter:description"
-      content="Vista completa del carrito con precio unitario, cantidad y total por producto."
-    />
-    <link rel="canonical" href="https://example.com/carrito" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Manjari:wght@100;400;700&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loop | Moda urbana y esenciales diarios</title>
+    <meta name="description" content="Loop: descubre nuevos lanzamientos y más vendidos en calzado, camisas, pantalones y accesorios para tu estilo diario.">
+    <meta name="robots" content="index,follow,max-image-preview:large">
+    <meta name="author" content="Loop">
+    <meta name="theme-color" content="#0f766e">
+    <link rel="canonical" href="index.html">
+
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="navbar-cart-total.js" defer></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ["Manjari", "ui-sans-serif", "system-ui", "sans-serif"]
-            },
-            colors: {
-              loop: {
-                50: "#ecfeff",
-                100: "#cffafe",
-                600: "#0891b2",
-                700: "#0f766e",
-                900: "#0f172a"
-              }
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ["Manjari", "ui-sans-serif", "system-ui", "sans-serif"]
+                    },
+                    colors: {
+                        loop: {
+                            50: "#ecfeff",
+                            100: "#cffafe",
+                            600: "#0891b2",
+                            700: "#0f766e",
+                            900: "#0f172a"
+                        }
+                    }
+                }
             }
-          }
-        }
-      };
+        };
     </script>
-    <script type="application/ld+json" id="schema-webpage">
-      {
-        "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "WebPage",
-            "name": "Carrito de Compras",
-            "description": "Detalle completo del pedido con productos, cantidades y totales.",
-            "inLanguage": "es",
-            "url": "https://example.com/carrito"
-          },
-          {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "Inicio",
-                "item": "https://example.com"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": "Carrito",
-                "item": "https://example.com/carrito"
-              }
-            ]
-          }
-        ]
-      }
-    </script>
-    <script type="application/ld+json" id="schema-cart"></script>
-  </head>
-  <body class="bg-[radial-gradient(circle_at_top,_#ffffff_0,_#eef1f5_60%)] text-slate-900 font-sans antialiased">
-    <a href="#contenido" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow">Saltar al contenido principal</a>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
 
     <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur">
-        <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4">
-            <div class="flex items-center justify-between gap-3">
-                <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
-                <button id="menu-toggle" type="button" aria-controls="mobile-menu" aria-expanded="false" class="inline-flex items-center justify-center rounded-md border border-slate-300 bg-white p-2 text-slate-800 transition hover:border-loop-600 hover:text-loop-700 lg:hidden">
-                    <span class="sr-only">Abrir menú principal</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        <nav aria-label="Barra principal" class="mx-auto w-[92%] max-w-6xl py-4 flex items-center justify-between">
+            <a href="index.html" class="text-2xl font-extrabold tracking-tight text-slate-900">Loop</a>
+
+            <!-- Buscador -->
+            <form action="index.html" method="get" role="search" class="flex-1 mx-4 max-w-md">
+                <label for="busqueda" class="sr-only">Buscar productos</label>
+                <div class="flex items-center gap-2 border-b border-slate-900 px-1 pb-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-800" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7"></circle>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20 20l-3.5-3.5"></path>
+                    </svg>
+                    <input id="busqueda" name="busqueda" type="search" placeholder="BUSCAR" class="w-full border-none bg-transparent text-xs font-medium uppercase tracking-[0.08em] text-slate-900 outline-none placeholder:text-slate-900" autocomplete="off">
+                </div>
+            </form>
+
+            <!-- Usuario y carrito -->
+            <div class="flex items-center gap-4 text-slate-900">
+                <button type="button" aria-label="Mi cuenta" class="inline-flex items-center transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 7.5a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.5 20.12a7.5 7.5 0 0 1 15 0" />
                     </svg>
                 </button>
-                <div id="mobile-menu" class="mt-3 hidden w-full flex-col gap-3 lg:mt-0 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-3">
-                <form action="index.html" method="get" role="search" class="w-full lg:w-56">
-                    <label for="busqueda" class="sr-only">Buscar productos</label>
-                    <div class="flex items-center rounded-full border border-slate-300 bg-white px-4 py-2 shadow-sm">
-                        <input id="busqueda" name="busqueda" type="search" placeholder="Buscar productos" class="w-full border-none bg-transparent text-sm outline-none placeholder:text-slate-400" autocomplete="off">
-                    </div>
-                </form>
-                <button type="button" class="w-full rounded-full border border-slate-300 bg-white px-4 py-2 text-sm font-medium text-slate-800 transition hover:border-loop-600 hover:text-loop-700 lg:w-auto">Mi cuenta</button>
-                </div>
+                <a href="Carrito.html" aria-label="Ver carrito de compras" class="inline-flex items-center gap-2 transition hover:opacity-70">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7.5h12l-1 11H7l-1-11Zm3-2.25A3 3 0 0 1 12 2.25a3 3 0 0 1 3 3" />
+                    </svg>
+                    <span class="text-sm" data-cart-total>UYU 0,00</span>
+                </a>
             </div>
         </nav>
     </header>
 
-    <main id="contenido" class="mx-auto w-[92%] max-w-6xl px-0 py-8 md:py-12">
-      <section class="mb-6 md:mb-8">
-        <h1 id="cart-title" class="text-2xl md:text-3xl font-extrabold tracking-tight text-slate-900 mb-2">Detalle del pedido</h1>
-        <p class="max-w-2xl text-base text-slate-700">Revisa tu carrito con información completa y actualizada antes de finalizar la compra.</p>
-      </section>
+    <main id="contenido">
+        <!-- Hero -->
+        <section aria-labelledby="hero-title" class="relative h-[100svh] min-h-[560px]">
+            <video class="absolute inset-0 h-full w-full object-cover" src="Recursos Gráficos/Hero/CampañaHero.mp4" autoplay muted loop playsinline aria-label="Video de campaña principal de Loop"></video>
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-slate-900/25 to-transparent"></div>
+            <div class="relative z-10 mx-auto flex h-full w-[92%] max-w-6xl items-start pt-24 md:pt-28">
+                <div>
+                    <h1 id="hero-title" class="max-w-3xl font-bold leading-tight text-white">
+                        <span class="block text-4xl md:text-6xl" style="text-shadow: 1px 1px 0 rgba(15,23,42,0.55),2px 2px 0 rgba(15,23,42,0.45),3px 3px 0 rgba(15,23,42,0.35),4px 4px 0 rgba(15,23,42,0.25),10px 14px 24px rgba(0,0,0,0.35);">Estilo urbano sin esfuerzo</span>
+                        <span class="mt-1 block text-2xl md:text-4xl" style="text-shadow: 1px 1px 0 rgba(15,23,42,0.55),2px 2px 0 rgba(15,23,42,0.45),3px 3px 0 rgba(15,23,42,0.35),4px 4px 0 rgba(15,23,42,0.25),10px 14px 24px rgba(0,0,0,0.35);">Lo nuevo y lo esencial.</span>
+                    </h1>
+                    <p class="mt-4 max-w-xl text-base font-bold text-slate-100 md:text-lg">Calzado, camisas, pantalones y accesorios diseñados para fusionar tendencia y comodidad en tu día a día. ¡Explora la colección!</p>
+                    <a href="Catalogo.html" class="mt-12 inline-flex items-center rounded-full bg-white px-6 py-3 text-sm font-semibold uppercase tracking-[0.08em] text-slate-900 transition hover:bg-slate-100">Ver colección</a>
+                </div>
+            </div>
+        </section>
 
-      <section
-        aria-labelledby="cart-title"
-        class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-md"
-      >
-        <header class="flex flex-col gap-3 border-b border-slate-200 bg-slate-50 px-4 py-4 md:flex-row md:items-center md:justify-between md:px-8 font-sans">
-          <div>
-            <h2 class="text-base font-bold uppercase tracking-wide text-slate-900">Detalle del pedido</h2>
-            <p class="mt-1 text-sm text-slate-600">Cuenta: ariasmeyersilvina@gmail.com</p>
-          </div>
-          <a href="#" class="text-sm font-semibold text-loop-700 underline underline-offset-4 hover:text-loop-600 transition">Cambiar cuenta</a>
-        </header>
+        <!-- Secciones de productos -->
+        <section aria-labelledby="nuevos-lanzamientos" class="mx-auto grid min-h-screen w-[92%] max-w-6xl content-center py-8 md:py-10">
+            <div class="mb-4 flex items-end justify-between">
+                <h2 id="nuevos-lanzamientos" class="rounded-sm bg-black px-3 py-1 text-2xl font-semibold text-white md:text-3xl">Nuevos lanzamientos</h2>
+                <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
+            </div>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4">
+                <!-- Productos ejemplo -->
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-calzado2">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Calzado/calzado2-a.webp" alt="Zapato Derby Marrón" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Zapato Derby Marrón</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$3990</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-camisa1">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Camisas/Camisa1-a.jpg" alt="Camisa Marrón Rayada" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Camisa Marrón Rayada</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$2290</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-pantalon3">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Pantalones/Pantalon3-a.jpg" alt="Jeans Anchos Oscuros" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Jeans Anchos Oscuros</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$2990</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-accesorio3">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Accesorios/accesorio3-a.webp" alt="Cinturón Negro" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Cinturón Negro</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$799</p>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
 
-        <div class="hidden grid-cols-[1.7fr_0.7fr_1fr] gap-4 border-b border-slate-200 px-8 py-3 text-xs font-bold uppercase tracking-[0.08em] text-slate-500 md:grid font-sans">
-          <span>Producto</span>
-          <span class="text-center">Cantidad</span>
-          <span class="text-right">Precios</span>
-        </div>
-
-        <ul id="cart-list" class="divide-y divide-slate-200" aria-live="polite"></ul>
-
-
-
-        <footer class="border-t border-slate-200 px-4 py-4 md:px-8 font-sans">
-          <div class="flex items-center justify-between">
-            <p class="text-lg font-bold text-slate-900">Importe total</p>
-            <strong id="subtotal" class="text-2xl font-extrabold tracking-tight text-slate-900">UYU 0,00</strong>
-          </div>
-          <button
-            type="button"
-            class="mt-5 w-full rounded-full border border-black bg-black py-3 text-base font-bold uppercase tracking-wide text-white shadow-md transition hover:bg-white hover:text-black focus:outline-none focus:ring-2 focus:ring-black focus:ring-offset-2"
-          >
-            Pagar
-          </button>
-        </footer>
-      </section>
-
-      <section class="mt-8 rounded-2xl border border-slate-200 bg-white p-4 md:p-8 font-sans" aria-labelledby="seo-info-title">
-        <h2 id="seo-info-title" class="text-lg font-bold text-slate-900">Información de envío y cambios</h2>
-        <p class="mt-2 text-base leading-relaxed text-slate-700">
-          Entregamos en todo Uruguay. Puedes modificar cantidades en el carrito y ver el impacto
-          inmediato en el total de tu pedido. Los precios se muestran en UYU con descuentos aplicados.
-        </p>
-      </section>
+        <!-- Más vendidos -->
+        <section aria-labelledby="mas-vendidos" class="mx-auto grid min-h-screen w-[92%] max-w-6xl content-center py-8 md:py-10">
+            <div class="mb-4 flex items-end justify-between">
+                <h2 id="mas-vendidos" class="rounded-sm bg-black px-3 py-1 text-2xl font-semibold text-white md:text-3xl">Más vendidos</h2>
+                <a href="Catalogo.html" class="text-sm font-medium text-loop-700 hover:text-loop-600">Ver todo</a>
+            </div>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-10 pb-2 md:grid-cols-4">
+                <!-- Productos ejemplo -->
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-calzado3">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Calzado/calzado3-a.webp" alt="Botas de Cuero Negras" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Botas de Cuero Negras</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$4290</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-calzado4">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Calzado/calzado4-a.webp" alt="Zapatillas Deportivas" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Zapatillas Deportivas</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$4590</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-calzado5">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Calzado/calzado5-a.webp" alt="Zapatilla Urbana Marrón" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Zapatilla Urbana Marrón</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$4990</p>
+                        </div>
+                    </a>
+                </article>
+                <article class="min-w-0">
+                    <a href="Vista-de-producto.html#prod-accesorio4">
+                        <div class="relative">
+                            <img src="Recursos Gráficos/Accesorios/accesorio4-a.webp" alt="Bandolera Negra" class="h-64 w-full object-cover md:h-80">
+                        </div>
+                        <div class="mt-3 text-left">
+                            <h3 class="text-sm font-semibold uppercase tracking-[0.12em] text-black md:text-base">Bandolera Negra</h3>
+                            <p class="mt-1 text-lg font-extrabold leading-none text-black">$1599</p>
+                        </div>
+                    </a>
+                </article>
+            </div>
+        </section>
     </main>
 
-    <footer class="relative mt-8 overflow-hidden border-t border-black bg-black text-white">
-      <div class="relative mx-auto w-[92%] max-w-6xl py-12 md:py-14">
-        <div class="grid gap-5 md:grid-cols-3">
-          <section aria-labelledby="footer-categorias" class="rounded-2xl border border-white/20 bg-black/40 p-5 shadow-md backdrop-blur-sm">
-            <h2 id="footer-categorias" class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1 text-lg font-semibold text-white">Categorías</h2>
-            <ul class="space-y-2 text-sm">
-              <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Calzado</a></li>
-              <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Camisas</a></li>
-              <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Pantalones</a></li>
-              <li><a href="Catalogo.html" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Accesorios</a></li>
-            </ul>
-          </section>
+    <footer class="mt-8 bg-black text-slate-200">
+        <div class="mx-auto grid w-[92%] max-w-6xl gap-10 py-12 md:grid-cols-3">
+            <section aria-labelledby="footer-categorias">
+                <h2 id="footer-categorias" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Categorías</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="Catalogo.html?categoria=calzado" class="transition hover:text-white">Calzado</a></li>
+                    <li><a href="Catalogo.html?categoria=camisas" class="transition hover:text-white">Camisas</a></li>
+                    <li><a href="Catalogo.html?categoria=pantalones" class="transition hover:text-white">Pantalones</a></li>
+                    <li><a href="Catalogo.html?categoria=accesorios" class="transition hover:text-white">Accesorios</a></li>
+                </ul>
+            </section>
 
-          <nav aria-labelledby="footer-legal" class="rounded-2xl border border-white/20 bg-black/40 p-5 shadow-md backdrop-blur-sm">
-            <h2 id="footer-legal" class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1 text-lg font-semibold text-white">Legal</h2>
-            <ul class="space-y-2 text-sm">
-              <li><a href="#" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Términos y condiciones</a></li>
-              <li><a href="#" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Política de privacidad</a></li>
-              <li><a href="#" class="inline-block rounded-full bg-white/10 px-3 py-1 text-white transition hover:bg-white/20 hover:text-white">Sobre la marca</a></li>
-            </ul>
-          </nav>
+            <nav aria-labelledby="footer-legal">
+                <h2 id="footer-legal" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Legal</h2>
+                <ul class="space-y-3 text-sm text-slate-300">
+                    <li><a href="#" class="transition hover:text-white">Términos y condiciones</a></li>
+                    <li><a href="#" class="transition hover:text-white">Política de privacidad</a></li>
+                    <li><a href="#" class="transition hover:text-white">Sobre la marca</a></li>
+                </ul>
+            </nav>
 
-          <section aria-labelledby="footer-contacto" class="rounded-2xl border border-white/20 bg-black/40 p-5 shadow-md backdrop-blur-sm">
-            <h2 id="footer-contacto" class="mb-4 inline-flex rounded-full bg-white/10 px-4 py-1 text-lg font-semibold text-white">Contacto</h2>
-                    <address class="space-y-2 text-sm not-italic">
-                        <p class="flex items-center gap-2 inline-block rounded-full bg-white/10 px-3 py-1 text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75V12A4.5 4.5 0 0 0 12 7.5v0A4.5 4.5 0 0 0 7.5 12v.75m9 0A2.25 2.25 0 0 1 18 15v1.5a2.25 2.25 0 0 1-2.25 2.25h-7.5A2.25 2.25 0 0 1 6 16.5V15a2.25 2.25 0 0 1 1.5-2.25m9 0h-9" /></svg>
-                          soporte@loop.com
-                        </p>
-                        <p class="flex items-center gap-2 inline-block rounded-full bg-white/10 px-3 py-1 text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h0a2.25 2.25 0 0 0 2.25-2.25v-2.25a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75v1.5c-4.97 0-9-4.03-9-9v-1.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75v2.25A2.25 2.25 0 0 0 2.25 6.75z" /></svg>
-                          +34 600 000 000
-                        </p>
-                        <p class="flex items-center gap-2 inline-block rounded-full bg-white/10 px-3 py-1 text-white">
-                          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 1 1-18 0 9 9 0 0 1 18 0z" /></svg>
-                          Lun a Vie 9:00 - 18:00
-                        </p>
-                    </address>
-          </section>
+            <section aria-labelledby="footer-contacto">
+                <h2 id="footer-contacto" class="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-white">Contacto</h2>
+                <address class="space-y-3 text-sm not-italic text-slate-300">
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.25h16.5v13.5H3.75z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 6 7.5 6 7.5-6" />
+                        </svg>
+                        <span>soporte@loop.com</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106a1.125 1.125 0 0 0-1.173.417l-.97 1.294a1.125 1.125 0 0 1-1.21.38 12.035 12.035 0 0 1-7.143-7.143 1.125 1.125 0 0 1 .38-1.21l1.294-.97c.363-.272.53-.738.417-1.173L7.963 3.102A1.125 1.125 0 0 0 6.872 2.25H5.5A2.25 2.25 0 0 0 3.25 4.5v2.25Z" />
+                        </svg>
+                        <span>+34 600 000 000</span>
+                    </p>
+                    <p class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8"></circle>
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l2.5 2.5" />
+                        </svg>
+                        <span>Lun a Vie 9:00 - 18:00</span>
+                    </p>
+                </address>
+            </section>
         </div>
-      </div>
-      <p class="relative border-t border-white/25 bg-black py-4 text-center text-xs text-white/85">© 2026 Loop. Todos los derechos reservados.</p>
+        <div class="border-t border-slate-800 py-4 text-center text-xs text-slate-400">
+            <p>© 2026 Loop. Todos los derechos reservados.</p>
+        </div>
     </footer>
 
-    <script>
-      const menuToggleButton = document.getElementById("menu-toggle");
-      const mobileMenu = document.getElementById("mobile-menu");
-
-      if (menuToggleButton && mobileMenu) {
-        menuToggleButton.addEventListener("click", () => {
-          const isExpanded = menuToggleButton.getAttribute("aria-expanded") === "true";
-          menuToggleButton.setAttribute("aria-expanded", String(!isExpanded));
-          mobileMenu.classList.toggle("hidden");
-        });
-      }
-    </script>
-    <script src="script.js"></script>
-    </body>
-  </html>
+</body>
+</html>
