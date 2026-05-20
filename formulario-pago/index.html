@@ -174,7 +174,11 @@
 
       <div class="flex justify-between">
         <span>Impuestos</span>
+<<<<<<< HEAD
         <span>€ 5</span>
+=======
+        <span id="impuestos">$200</span>
+>>>>>>> Develop
       </div>
 
       <hr class="my-3">
@@ -216,8 +220,42 @@
 </style>
 
 <script>
-const subtotal = 2000;
-const impuestos = 200;
+const CART_KEY = "loop_cart";
+
+function getCart() {
+  try {
+    const raw = localStorage.getItem(CART_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch (error) {
+    return [];
+  }
+}
+
+function formatPrice(value) {
+  return "$" + Math.round(value);
+}
+
+function parsePrice(value) {
+  if (typeof value === "number" && Number.isFinite(value)) {
+    return value;
+  }
+
+  return Number(String(value || "").replace(/[^0-9]/g, "")) || 0;
+}
+
+const cart = getCart();
+
+if (!cart.length) {
+  alert("Tu carrito está vacío. Te llevamos de vuelta al catálogo.");
+  window.location.replace("../Catalogo.html");
+}
+
+const subtotal = (cart.length ? cart : []).reduce((acc, item) => {
+  const itemPrice = parsePrice(item.priceValue ?? item.price);
+  return acc + itemPrice * (Number(item.qty) || 1);
+}, 0);
+
+const impuestos = subtotal * 0.1;
 
 const metodos = document.querySelectorAll(".metodo");
 const totalEl = document.getElementById("total");
@@ -259,8 +297,13 @@ function calcularTotal(metodo) {
 
   const total = subtotal - descuento + impuestos;
 
+<<<<<<< HEAD
   document.getElementById("descuento").innerText = "-€" + Math.round(descuento/42);
   totalEl.innerText = "€ " + Math.round(total/42);
+=======
+  document.getElementById("descuento").innerText = "-$" + descuento.toFixed(0);
+  totalEl.innerText = formatPrice(total);
+>>>>>>> Develop
 }
 
 function validarTarjeta() {
@@ -356,9 +399,19 @@ document.getElementById("checkoutForm").addEventListener("submit", e => {
     valido = true;
   }
 
-  if (!valido) e.preventDefault();
+  if (!valido) {
+    e.preventDefault();
+    return;
+  }
+
+  e.preventDefault();
+  localStorage.removeItem(CART_KEY);
+  alert("Compra confirmada. Gracias por tu pedido.");
+  window.location.href = "../index.html";
 });
 
+document.getElementById("subtotal").innerText = formatPrice(subtotal);
+document.getElementById("impuestos").innerText = formatPrice(impuestos);
 actualizar();
 </script>
 
