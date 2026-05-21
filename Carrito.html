@@ -273,11 +273,12 @@
 
         function renderCart() {
             const cart = getCart();
+            const emptyMessage = i18nText('cart.empty', 'Aun no hay productos en el carrito.');
 
             checkoutBtn.classList.remove('pointer-events-none', 'opacity-60');
 
             if (!cart.length) {
-                cartItems.innerHTML = '<p class="text-slate-600">Aun no hay productos en el carrito.</p>';
+                cartItems.innerHTML = `<p class="text-slate-600">${emptyMessage}</p>`;
                 orderTotalElement.textContent = formatPrice(0);
                 return;
             }
@@ -287,6 +288,8 @@
             cartItems.innerHTML = `
                 <div class="space-y-4">
                     ${cart.map((item) => {
+                        const translatedName = translateProductName(item);
+                        const translatedSize = translateSizeValue(item.size);
                         const unitPrice = parsePrice(item.price);
                         const qty = Number(item.qty || 1);
                         const totalPrice = unitPrice * qty;

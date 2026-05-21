@@ -174,11 +174,7 @@
 
       <div class="flex justify-between">
         <span>Impuestos</span>
-<<<<<<< HEAD
-        <span>€ 5</span>
-=======
-        <span id="impuestos">$200</span>
->>>>>>> Develop
+        <span id="impuestos">€ 0</span>
       </div>
 
       <hr class="my-3">
@@ -233,7 +229,7 @@ function getCart() {
 }
 
 function formatPrice(value) {
-  return "$" + Math.round(value);
+  return `€ ${Math.round(value)}`;
 }
 
 function parsePrice(value) {
@@ -290,7 +286,7 @@ function calcularTotal(metodo) {
 
     document.getElementById("descuentoBox").classList.remove("hidden");
     document.getElementById("ahorro").classList.remove("hidden");
-    document.getElementById("ahorro").innerText = "Vous économisez €" + Math.round(descuento/42);
+    document.getElementById("ahorro").innerText = `Ahorras ${formatPrice(descuento)}`;
   } else {
     document.getElementById("descuentoBox").classList.add("hidden");
     document.getElementById("ahorro").classList.add("hidden");
@@ -298,13 +294,8 @@ function calcularTotal(metodo) {
 
   const total = subtotal - descuento + impuestos;
 
-<<<<<<< HEAD
-  document.getElementById("descuento").innerText = "-€" + Math.round(descuento/42);
-  totalEl.innerText = "€ " + Math.round(total/42);
-=======
-  document.getElementById("descuento").innerText = "-$" + descuento.toFixed(0);
+  document.getElementById("descuento").innerText = `-${formatPrice(descuento)}`;
   totalEl.innerText = formatPrice(total);
->>>>>>> Develop
 }
 
 function validarTarjeta() {
@@ -361,6 +352,11 @@ document.getElementById("bankSelect").addEventListener("change", e => {
 });
 
 document.getElementById("checkoutForm").addEventListener("submit", e => {
+  if (!e.target.reportValidity()) {
+    e.preventDefault();
+    return;
+  }
+
   const metodo = document.querySelector("input[name=metodo_pago]:checked").value;
   let valido = false;
   let bankUrl = "";
