@@ -174,11 +174,7 @@
 
       <div class="flex justify-between">
         <span>Impuestos</span>
-<<<<<<< HEAD
-        <span>€ 5</span>
-=======
-        <span id="impuestos">$200</span>
->>>>>>> Develop
+        <span id="impuestos">€ 0</span>
       </div>
 
       <hr class="my-3">
@@ -221,6 +217,7 @@
 
 <script>
 const CART_KEY = "loop_cart";
+const CHECKOUT_SUMMARY_KEY = "loop_checkout_summary";
 
 function getCart() {
   try {
@@ -232,7 +229,7 @@ function getCart() {
 }
 
 function formatPrice(value) {
-  return "$" + Math.round(value);
+  return `€ ${Math.round(value)}`;
 }
 
 function parsePrice(value) {
@@ -289,7 +286,7 @@ function calcularTotal(metodo) {
 
     document.getElementById("descuentoBox").classList.remove("hidden");
     document.getElementById("ahorro").classList.remove("hidden");
-    document.getElementById("ahorro").innerText = "Vous économisez €" + Math.round(descuento/42);
+    document.getElementById("ahorro").innerText = `Ahorras ${formatPrice(descuento)}`;
   } else {
     document.getElementById("descuentoBox").classList.add("hidden");
     document.getElementById("ahorro").classList.add("hidden");
@@ -297,13 +294,8 @@ function calcularTotal(metodo) {
 
   const total = subtotal - descuento + impuestos;
 
-<<<<<<< HEAD
-  document.getElementById("descuento").innerText = "-€" + Math.round(descuento/42);
-  totalEl.innerText = "€ " + Math.round(total/42);
-=======
-  document.getElementById("descuento").innerText = "-$" + descuento.toFixed(0);
+  document.getElementById("descuento").innerText = `-${formatPrice(descuento)}`;
   totalEl.innerText = formatPrice(total);
->>>>>>> Develop
 }
 
 function validarTarjeta() {
@@ -360,8 +352,14 @@ document.getElementById("bankSelect").addEventListener("change", e => {
 });
 
 document.getElementById("checkoutForm").addEventListener("submit", e => {
+  if (!e.target.reportValidity()) {
+    e.preventDefault();
+    return;
+  }
+
   const metodo = document.querySelector("input[name=metodo_pago]:checked").value;
   let valido = false;
+  let bankUrl = "";
 
   if (metodo === "tarjeta") {
     if (validarTarjeta()) valido = true;
@@ -384,14 +382,13 @@ document.getElementById("checkoutForm").addEventListener("submit", e => {
       banco.classList.add("error");
       alert("⚠️ Debes seleccionar un banco");
     } else {
-      e.preventDefault();
-      const url = bankUrls[banco.value];
-      if (!url) {
+      bankUrl = bankUrls[banco.value] || "";
+      if (!bankUrl) {
         alert("⚠️ Banco no válido");
+        e.preventDefault();
         return;
       }
-      window.location.href = url;
-      return;
+      valido = true;
     }
   }
 
@@ -405,9 +402,35 @@ document.getElementById("checkoutForm").addEventListener("submit", e => {
   }
 
   e.preventDefault();
+
+  const totalTexto = totalEl.innerText || formatPrice(subtotal + impuestos);
+  const fecha = new Intl.DateTimeFormat("es-UY", {
+    dateStyle: "medium",
+    timeStyle: "short"
+  }).format(new Date());
+
+  const transaccion = `LOOP-${Date.now().toString().slice(-8)}`;
+  const datos = {
+    cliente: document.querySelector("input[name=nombreCompleto]").value.trim(),
+    email: document.querySelector("input[name=email]").value.trim(),
+    telefono: document.querySelector("input[name=telefono]").value.trim(),
+    metodo,
+    banco: metodo === "banco" ? document.getElementById("bankSelect").value : "-",
+    subtotal: document.getElementById("subtotal").innerText,
+    impuestos: document.getElementById("impuestos").innerText,
+    total: totalTexto,
+    fecha,
+    transaccion
+  };
+
+  localStorage.setItem(CHECKOUT_SUMMARY_KEY, JSON.stringify(datos));
   localStorage.removeItem(CART_KEY);
-  alert("Compra confirmada. Gracias por tu pedido.");
-  window.location.href = "../index.html";
+
+  if (metodo === "banco" && bankUrl) {
+    window.open(bankUrl, "_blank", "noopener,noreferrer");
+  }
+
+  window.location.href = "resumen-compra.html";
 });
 
 document.getElementById("subtotal").innerText = formatPrice(subtotal);

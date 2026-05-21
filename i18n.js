@@ -97,7 +97,7 @@ const I18N_TRANSLATIONS = {
     "footer.about": "A propos de la marque",
     "footer.contact": "Contact",
     "footer.hours": "Lun a Ven 9:00 - 18:00",
-    "footer.rights": "© 2026 Loop. Tous droits reserves."
+    "footer.rights": "© 2026 Loop. Tous droits reserves.",
     // Materiales
     "product.material.algodon_ligero": "Coton léger",
     "product.material.algodon_lino": "Coton et lin",
@@ -234,7 +234,7 @@ const I18N_TRANSLATIONS = {
     "footer.about": "Sobre la marca",
     "footer.contact": "Contacto",
     "footer.hours": "Lun a Vie 9:00 - 18:00",
-    "footer.rights": "© 2026 Loop. Todos los derechos reservados."
+    "footer.rights": "© 2026 Loop. Todos los derechos reservados.",
     // Materiales
     "product.material.algodon_ligero": "Algodón ligero",
     "product.material.algodon_lino": "Algodón y lino",

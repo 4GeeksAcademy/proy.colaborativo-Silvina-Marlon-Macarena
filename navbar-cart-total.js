@@ -5,8 +5,8 @@
 
   function formatPrice(value) {
     return (
-      "UYU " +
-      new Intl.NumberFormat("es-UY", {
+      "€ " +
+      new Intl.NumberFormat("fr-FR", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2,
       }).format(value)
@@ -26,7 +26,7 @@
     var cart = getCart();
     return cart.reduce(function (acc, item) {
       var qty = Math.max(1, Number(item.qty || 1));
-      return acc + parsePrice(item.price) * qty;
+      return acc + parsePrice(item.priceValue != null ? item.priceValue : item.price) * qty;
     }, 0);
   }
 
